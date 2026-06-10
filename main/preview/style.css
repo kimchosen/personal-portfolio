@@ -1,0 +1,725 @@
+@font-face {
+  font-family: "Pulp Display";
+  src: local("Pulp Display"), local("PulpDisplay");
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 18px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.nav-toggle span+span {
+  margin-top: 4px;
+}
+
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.site-nav.open {
+  display: block;
+}
+
+@media (max-width: 1023px) {
+  .site-nav {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+    top: calc(100% + 0.75rem);
+    display: none;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(2, 6, 23, 0.92);
+    padding: 1rem;
+    backdrop-filter: blur(24px);
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.875rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+  .group,
+  .nav-toggle,
+  .theme-toggle,
+  .site-nav a,
+  .site-nav,
+  a,
+  button,
+  input,
+  textarea {
+    transition-property:
+      transform, opacity, background-color, border-color, box-shadow, color;
+    transition-duration: 220ms;
+    transition-timing-function: ease;
+  }
+}
+
+.theme-fab {
+  box-shadow: 0 18px 60px rgba(2, 6, 23, 0.45);
+}
+
+.theme-fab .theme-toggle-label {
+  display: inline;
+}
+
+.theme-fab .theme-toggle-icon {
+  display: inline-flex;
+  width: 1.25rem;
+  justify-content: center;
+}
+
+body[data-theme="light"] .theme-fab {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #0f172a !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 4px 0 rgba(203, 213, 225, 0.6),
+    0 18px 60px rgba(15, 23, 42, 0.18),
+    var(--light-depth-glow-cyan) !important;
+}
+
+body[data-theme="light"] {
+  --light-depth-near: 0 1px 0 rgba(255, 255, 255, 0.98);
+  --light-depth-mid: 0 8px 24px rgba(15, 23, 42, 0.1);
+  --light-depth-far: 0 28px 90px rgba(15, 23, 42, 0.16);
+  --light-depth-glow-cyan: 0 0 48px rgba(34, 211, 238, 0.14);
+  --light-depth-glow-amber: 0 0 40px rgba(251, 191, 36, 0.1);
+  background: linear-gradient(180deg, #fffdf8 0%, #f8fafc 48%, #eef2f7 100%);
+  color: #0f172a;
+}
+
+body[data-theme="light"]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 40% at 12% 8%,
+      rgba(125, 211, 252, 0.22),
+      transparent 62%),
+    radial-gradient(ellipse 50% 38% at 88% 14%,
+      rgba(244, 114, 182, 0.1),
+      transparent 58%),
+    radial-gradient(ellipse 60% 45% at 50% 100%,
+      rgba(203, 213, 225, 0.35),
+      transparent 65%);
+  opacity: 0.85;
+}
+
+body[data-theme="light"] .page-background {
+  background: linear-gradient(180deg,
+      #fffdf8 0%,
+      #f8fafc 45%,
+      #eef2f7 100%) !important;
+}
+
+body[data-theme="light"] .page-background .bg-cyan-400\/20,
+body[data-theme="light"] .page-background .bg-fuchsia-500\/20,
+body[data-theme="light"] .page-background .bg-amber-300\/10,
+body[data-theme="light"] .page-background .bg-amber-300\/15 {
+  opacity: 0.25 !important;
+}
+
+body[data-theme="light"] .page-overlay {
+  background:
+    radial-gradient(circle at 50% 8%,
+      rgba(255, 255, 255, 0.98),
+      transparent 22%),
+    radial-gradient(circle at 18% 24%,
+      rgba(226, 232, 240, 0.5),
+      transparent 38%),
+    radial-gradient(circle at 82% 32%,
+      rgba(186, 230, 253, 0.28),
+      transparent 36%),
+    linear-gradient(180deg,
+      rgba(255, 252, 247, 0.88) 0%,
+      rgba(248, 250, 252, 0.94) 45%,
+      rgba(226, 232, 240, 0.42) 100%) !important;
+}
+
+body[data-theme="light"] main {
+  perspective: 1400px;
+  perspective-origin: 50% 20%;
+}
+
+/* Copy on the light page canvas only — bordered panels keep night-mode text */
+/* Commented out as sections remain dark in light mode, so text must remain light to be readable
+body[data-theme="light"]
+  main
+  :is(
+    #home .max-w-2xl > h1,
+    #home .max-w-2xl > h1 span,
+    #about .order-1 > h2,
+    #services > .mx-auto > .max-w-3xl h2,
+    #portfolio > .mx-auto > .max-w-3xl h2,
+    #experience > .mx-auto > .max-w-3xl h2,
+    #contact > .mx-auto > .grid > div:first-child > h2
+  ) {
+  color: #0f172a !important;
+}
+
+body[data-theme="light"]
+  main
+  :is(#home .max-w-2xl > p, #about .order-1 > p.text-slate-300) {
+  color: #1e293b !important;
+}
+
+body[data-theme="light"] main #about .order-1 > p.text-slate-400 {
+  color: #334155 !important;
+}
+
+body[data-theme="light"]
+  main
+  :is(
+    #services > .mx-auto > .max-w-3xl > p,
+    #portfolio > .mx-auto > .max-w-3xl > p,
+    #experience > .mx-auto > .max-w-3xl > p,
+    #contact > .mx-auto > .grid > div:first-child > p
+  ) {
+  color: #0891b2 !important;
+}
+
+body[data-theme="light"] main #home .max-w-2xl h1 .bg-clip-text {
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+*/
+
+/* Bordered panels: light surface + black text for readability */
+/* Only target panels that actually receive white backgrounds in light mode */
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) {
+  color: #0a0a0a !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+}
+
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) :is(.text-white, .text-slate-100, h1, h2, h3, strong, strong.text-white) {
+  color: #000000 !important;
+}
+
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) :is(p, span, li, label, .form-status) {
+  color: #171717 !important;
+}
+
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) .text-slate-200 {
+  color: #262626 !important;
+}
+
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) .text-slate-300 {
+  color: #1a1a1a !important;
+}
+
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) .text-slate-400 {
+  color: #333333 !important;
+}
+
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) .text-slate-500 {
+  color: #404040 !important;
+}
+
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) :is(.text-cyan-100, .text-cyan-200, .text-cyan-300) {
+  color: #0c4a6e !important;
+}
+
+body[data-theme="light"] main :is([class*="border-cyan-300/20"], [class*="border-cyan-300/30"]) {
+  border-color: rgba(8, 145, 178, 0.35) !important;
+}
+
+body[data-theme="light"] main #home {
+  position: relative;
+}
+
+body[data-theme="light"] main #home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 14% 18%,
+      rgba(255, 255, 255, 0.95),
+      transparent 20%),
+    radial-gradient(circle at 78% 22%,
+      rgba(125, 211, 252, 0.28),
+      transparent 26%),
+    radial-gradient(circle at 58% 72%,
+      rgba(203, 213, 225, 0.32),
+      transparent 30%),
+    radial-gradient(circle at 42% 48%,
+      rgba(148, 163, 184, 0.12),
+      transparent 42%);
+  filter: blur(28px);
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body[data-theme="light"] main #home .relative.mx-auto {
+  transform-style: preserve-3d;
+  transform: rotateY(-5deg) rotateX(2deg) translateZ(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body[data-theme="light"] main #home .relative.mx-auto {
+    transition: transform 420ms ease;
+  }
+
+  body[data-theme="light"] main #home .relative.mx-auto:hover {
+    transform: rotateY(-2deg) rotateX(1deg) translateY(-4px) translateZ(12px);
+  }
+}
+
+body[data-theme="light"] main #home .grid.max-w-lg>div {
+  box-shadow:
+    var(--light-depth-near),
+    0 2px 0 rgba(226, 232, 240, 0.9),
+    0 6px 0 rgba(203, 213, 225, 0.45),
+    var(--light-depth-mid),
+    var(--light-depth-far) !important;
+  transform: translateZ(0);
+}
+
+body[data-theme="light"] main #home .grid.max-w-lg>div:nth-child(2) {
+  transform: translateY(-3px) translateZ(8px);
+}
+
+body[data-theme="light"] main #home .grid.max-w-lg>div:nth-child(3) {
+  transform: translateY(-6px) translateZ(16px);
+}
+
+body[data-theme="light"] main #home>* {
+  position: relative;
+  z-index: 1;
+}
+
+body[data-theme="light"] main .bg-slate-950\/90 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+body[data-theme="light"] main #home .absolute.-inset-6 {
+  background: linear-gradient(135deg,
+      rgba(125, 211, 252, 0.42),
+      rgba(255, 255, 255, 0.04) 44%,
+      rgba(236, 72, 153, 0.18)) !important;
+  filter: blur(34px);
+  opacity: 1;
+}
+
+body[data-theme="light"] main #home .relative.overflow-hidden.rounded-\[2rem\].border.border-white\/10.bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+  background-image:
+    radial-gradient(circle at 18% 18%,
+      rgba(125, 211, 252, 0.14),
+      transparent 28%),
+    radial-gradient(circle at 82% 14%,
+      rgba(186, 230, 253, 0.2),
+      transparent 26%),
+    linear-gradient(180deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(248, 250, 252, 0.96)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    inset 0 -18px 48px rgba(15, 23, 42, 0.08),
+    0 4px 0 rgba(203, 213, 225, 0.55),
+    0 12px 32px rgba(15, 23, 42, 0.12),
+    0 32px 120px rgba(15, 23, 42, 0.28),
+    var(--light-depth-glow-cyan),
+    0 0 0 1px rgba(125, 211, 252, 0.22) !important;
+  transform: translateZ(24px);
+}
+
+body[data-theme="light"] main #home .relative.overflow-hidden.rounded-\[1\.5rem\].border.border-white\/10.bg-slate-900\/60 {
+  background-color: rgba(15, 23, 42, 0.98) !important;
+  background-image:
+    radial-gradient(circle at top right,
+      rgba(125, 211, 252, 0.36),
+      transparent 34%),
+    radial-gradient(circle at bottom left,
+      rgba(250, 204, 21, 0.12),
+      transparent 30%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.96)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -24px 56px rgba(2, 6, 23, 0.35),
+    0 8px 0 rgba(15, 23, 42, 0.18),
+    0 24px 80px rgba(15, 23, 42, 0.32),
+    var(--light-depth-glow-cyan) !important;
+  transform: translateZ(32px);
+}
+
+body[data-theme="light"] main #home .absolute.left-6.top-6,
+body[data-theme="light"] main #home .absolute.bottom-6.right-6 {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.12) !important;
+}
+
+body[data-theme="light"] main #home .absolute.left-6.top-6 p,
+body[data-theme="light"] main #home .absolute.bottom-6.right-6 p {
+  color: #171717 !important;
+}
+
+body[data-theme="light"] main #home .absolute.left-6.top-6 p.font-semibold,
+body[data-theme="light"] main #home .absolute.bottom-6.right-6 p {
+  color: #000000 !important;
+}
+
+/* Bordered panels: night-mode glass borders + 3D lift on light canvas */
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/10"][class*="bg-slate-900"],
+  [class*="border-white/15"][class*="bg-white/5"],
+  [class*="border-white/20"][class*="bg-white/5"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]) {
+  border-color: rgba(15, 23, 42, 0.14) !important;
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 2px 0 rgba(226, 232, 240, 0.9),
+    0 8px 0 rgba(203, 213, 225, 0.35),
+    var(--light-depth-mid),
+    var(--light-depth-far) !important;
+}
+
+body[data-theme="light"] main :is([class*="border-white/10"][class*="bg-white/5"],
+  [class*="border-white/10"][class*="bg-white/10"],
+  [class*="border-white/10"][class*="bg-slate-900"],
+  #portfolio .overflow-hidden[class*="border-white/10"],
+  #experience [class*="border-white/10"][class*="rounded-"]):hover {
+  border-color: rgba(8, 145, 178, 0.45) !important;
+}
+
+body[data-theme="light"] main [class*="border-white/10"][class*="bg-white/5"],
+body[data-theme="light"] main [class*="border-white/15"][class*="bg-white/5"],
+body[data-theme="light"] main [class*="border-white/20"][class*="bg-white/5"] {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  background-image: none !important;
+}
+
+body[data-theme="light"] main [class*="border-white/10"][class*="bg-white/10"] {
+  background-color: rgba(255, 255, 255, 0.97) !important;
+  background-image: none !important;
+}
+
+body[data-theme="light"] main #home .max-w-2xl>div.mb-6[class*="bg-cyan-300/10"] {
+  background-color: rgba(34, 211, 238, 0.12) !important;
+}
+
+body[data-theme="light"] main [class*="border-white/10"] input,
+body[data-theme="light"] main [class*="border-white/10"] textarea {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border-color: rgba(15, 23, 42, 0.16) !important;
+}
+
+body[data-theme="light"] main [class*="border-white/10"] input::placeholder,
+body[data-theme="light"] main [class*="border-white/10"] textarea::placeholder {
+  color: #525252 !important;
+}
+
+body[data-theme="light"] main [class*="border-white/10"] input:focus,
+body[data-theme="light"] main [class*="border-white/10"] textarea:focus {
+  border-color: rgba(103, 232, 249, 0.5) !important;
+}
+
+body[data-theme="light"] main .bg-slate-900\/60 {
+  background-color: rgba(15, 23, 42, 0.6) !important;
+}
+
+body[data-theme="light"] main [class*="rounded-"][class*="border-white/10"][class*="bg-white/5"],
+body[data-theme="light"] main [class*="rounded-"][class*="border-white/10"][class*="bg-white/10"] {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+body[data-theme="light"] main [class*="rounded-"][class*="border-white/10"][class*="bg-white/5"]::before,
+body[data-theme="light"] main [class*="rounded-"][class*="border-white/10"][class*="bg-white/10"]::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background:
+    radial-gradient(circle at 18% 18%,
+      rgba(125, 211, 252, 0.42),
+      transparent 32%),
+    radial-gradient(circle at 82% 18%,
+      rgba(186, 230, 253, 0.28),
+      transparent 30%),
+    radial-gradient(circle at 82% 82%,
+      rgba(186, 230, 253, 0.2),
+      transparent 36%),
+    radial-gradient(circle at 50% 50%,
+      rgba(226, 232, 240, 0.35),
+      transparent 55%);
+  filter: blur(38px);
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body[data-theme="light"] main [class*="rounded-"][class*="border-white/10"][class*="bg-white/5"]>*,
+body[data-theme="light"] main [class*="rounded-"][class*="border-white/10"][class*="bg-white/10"]>* {
+  position: relative;
+  z-index: 1;
+}
+
+body[data-theme="light"] main .group:hover,
+body[data-theme="light"] main .overflow-hidden:hover,
+body[data-theme="light"] main .rounded-\[1\.75rem\]:hover,
+body[data-theme="light"] main .rounded-\[2rem\]:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 4px 0 rgba(203, 213, 225, 0.5),
+    0 30px 110px rgba(15, 23, 42, 0.34),
+    var(--light-depth-glow-cyan),
+    0 0 0 1px rgba(125, 211, 252, 0.16),
+    0 14px 28px rgba(15, 23, 42, 0.12) !important;
+  transform: translateY(-6px) translateZ(20px) rotateX(1deg);
+}
+
+body[data-theme="light"] main .group,
+body[data-theme="light"] main .overflow-hidden,
+body[data-theme="light"] main .rounded-\[1\.75rem\],
+body[data-theme="light"] main .rounded-\[2rem\] {
+  transform: translateZ(0);
+  transform-style: preserve-3d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  body[data-theme="light"] main #home .relative.mx-auto,
+  body[data-theme="light"] main #home .relative.mx-auto:hover,
+  body[data-theme="light"] main .group:hover,
+  body[data-theme="light"] main .overflow-hidden:hover,
+  body[data-theme="light"] main .rounded-\[1\.75rem\]:hover,
+  body[data-theme="light"] main .rounded-\[2rem\]:hover {
+    transform: none;
+  }
+
+  body[data-theme="light"] main #home .grid.max-w-lg>div,
+  body[data-theme="light"] main #home .grid.max-w-lg>div:nth-child(2),
+  body[data-theme="light"] main #home .grid.max-w-lg>div:nth-child(3) {
+    transform: none;
+  }
+
+  body[data-theme="light"] main #about .relative.order-2,
+  body[data-theme="light"] main #about .relative.order-2:hover,
+  body[data-theme="light"] main #portfolio .grid>.overflow-hidden:nth-child(odd),
+  body[data-theme="light"] main #portfolio .grid>.overflow-hidden:nth-child(even),
+  body[data-theme="light"] main #portfolio .grid>.overflow-hidden:hover {
+    transform: none !important;
+  }
+}
+
+body[data-theme="light"] .shadow-glow {
+  box-shadow:
+    0 2px 0 rgba(165, 243, 252, 0.5),
+    0 8px 24px rgba(34, 211, 238, 0.22),
+    var(--light-depth-glow-cyan),
+    0 18px 60px rgba(15, 23, 42, 0.12) !important;
+}
+
+body[data-theme="light"] .shadow-neon {
+  box-shadow:
+    0 2px 0 rgba(253, 230, 138, 0.45),
+    0 8px 24px rgba(251, 191, 36, 0.2),
+    var(--light-depth-glow-amber),
+    0 18px 60px rgba(15, 23, 42, 0.1) !important;
+}
+
+body[data-theme="light"] main a.rounded-full.bg-cyan-300 {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 3px 0 rgba(6, 182, 212, 0.35),
+    0 10px 28px rgba(34, 211, 238, 0.35),
+    var(--light-depth-glow-cyan) !important;
+}
+
+body[data-theme="light"] main #about .relative.order-2 {
+  transform-style: preserve-3d;
+  transform: rotateY(4deg) translateZ(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body[data-theme="light"] main #about .relative.order-2 {
+    transition: transform 420ms ease;
+  }
+
+  body[data-theme="light"] main #about .relative.order-2:hover {
+    transform: rotateY(2deg) translateY(-4px) translateZ(10px);
+  }
+}
+
+body[data-theme="light"] main #about .relative.order-2>.overflow-hidden {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 6px 0 rgba(203, 213, 225, 0.4),
+    0 28px 100px rgba(15, 23, 42, 0.24),
+    var(--light-depth-glow-cyan) !important;
+}
+
+body[data-theme="light"] main #portfolio .overflow-hidden,
+body[data-theme="light"] main #experience .rounded-\[1\.75rem\] {
+  position: relative;
+  overflow: hidden;
+}
+
+body[data-theme="light"] main #portfolio .overflow-hidden::before,
+body[data-theme="light"] main #experience .rounded-\[1\.75rem\]::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  background:
+    radial-gradient(circle at 18% 22%,
+      rgba(186, 230, 253, 0.28),
+      transparent 40%),
+    radial-gradient(circle at 82% 78%,
+      rgba(226, 232, 240, 0.35),
+      transparent 34%),
+    radial-gradient(circle at 50% 50%,
+      rgba(248, 250, 252, 0.5),
+      transparent 58%);
+  filter: blur(34px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body[data-theme="light"] main #portfolio .overflow-hidden>*,
+body[data-theme="light"] main #experience .rounded-\[1\.75rem\]>* {
+  position: relative;
+  z-index: 1;
+}
+
+body[data-theme="light"] main #portfolio .grid>.overflow-hidden:nth-child(odd) {
+  transform: rotate(-0.75deg) translateZ(6px);
+}
+
+body[data-theme="light"] main #portfolio .grid>.overflow-hidden:nth-child(even) {
+  transform: rotate(0.75deg) translateZ(10px);
+}
+
+body[data-theme="light"] main #portfolio .grid>.overflow-hidden:nth-child(odd):hover {
+  transform: translateY(-8px) translateZ(24px) rotate(-1.25deg) !important;
+}
+
+body[data-theme="light"] main #portfolio .grid>.overflow-hidden:nth-child(even):hover {
+  transform: translateY(-8px) translateZ(24px) rotate(1.25deg) !important;
+}
+
+body[data-theme="light"] header {
+  background: rgba(2, 6, 23, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body[data-theme="light"] header .theme-toggle,
+body[data-theme="light"] header .nav-toggle {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+body[data-theme="light"] header .theme-toggle-label,
+body[data-theme="light"] header .theme-toggle-icon,
+body[data-theme="light"] header a,
+body[data-theme="light"] header .site-nav a {
+  color: #e2e8f0 !important;
+}
+
+body[data-theme="light"] header .theme-toggle:hover,
+body[data-theme="light"] header .nav-toggle:hover,
+body[data-theme="light"] header .site-nav a:hover {
+  color: #ffffff !important;
+  border-color: rgba(103, 232, 249, 0.35) !important;
+}
+
+body[data-theme="light"] header .text-cyan-300 {
+  color: #67e8f9 !important;
+}
+
+body[data-theme="light"] header .theme-fab {
+  display: none !important;
+}
+
+body[data-theme="light"] .bg-gradient-to-br,
+body[data-theme="light"] .bg-[radial-gradient(circle_at_top, _rgba(255, 255, 255, 0.08), _transparent_32%),
+linear-gradient(to_bottom, _rgba(2, 6, 23, 0.4), _rgba(2, 6, 23, 0.95))] {
+  filter: none !important;
+}
+
+/* Navigation sliding pill styling */
+.nav-indicator-pill {
+  transition: all 300ms cubic-bezier(0.25, 1, 0.5, 1);
+  background-color: rgba(34, 211, 238, 0.15) !important;
+}
+
+body[data-theme="light"] .nav-indicator-pill {
+  background-color: rgba(8, 145, 178, 0.12) !important;
+}
