@@ -37,7 +37,7 @@
   </head>
 
   <body
-    data-theme="light"
+    data-theme="dark"
     class="min-h-screen bg-slate-950 font-sans text-slate-100 antialiased selection:bg-cyan-300 selection:text-slate-950">
     <div
       class="page-background pointer-events-none fixed inset-0 -z-10 overflow-hidden">
@@ -123,13 +123,7 @@
       </div>
     </header>
 
-    <button
-      class="theme-toggle theme-fab fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/90 px-4 py-3 text-sm font-semibold text-white shadow-2xl shadow-black/30 backdrop-blur-xl lg:hidden"
-      aria-pressed="false"
-      aria-label="Toggle color theme">
-      <span class="theme-toggle-icon text-base">☀</span>
-      <span class="theme-toggle-label">Light Mode</span>
-    </button>
+
 
     <main class="relative">
       <section
@@ -250,11 +244,128 @@
               technologies, and building digital solutions that solve real-world
               problems.
             </p>
-            <p class="mt-4 max-w-2xl text-base leading-8 text-slate-400">
-              HTML, CSS, JavaScript, React, Tailwind, Bootstrap, Node.js, Java,
-              PHP, MySQL, Git, Github, Figma, Visual Studio Code, Antigravity,
-              Claude
-            </p>
+            <div class="mt-6 flex flex-wrap gap-3.5">
+              <!-- HTML5 -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#E34F26]/40 hover:bg-[#E34F26]/10 hover:shadow-[#E34F26]/10" title="HTML5">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#E34F26]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.343 3.867L12 19.219l5.377-1.482.744-8.312H8.531z"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">HTML5</span>
+              </div>
+              <!-- CSS3 -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#1572B6]/40 hover:bg-[#1572B6]/10 hover:shadow-[#1572B6]/10" title="CSS3">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#1572B6]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm5.088 5.438l.383 4.312h8.04l-.227 2.562H6.968l.188 2.113h8.086l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.343 3.867L12 19.219l5.377-1.482.88-9.844H7.203L6.82 5.438h10.978l.23-2.622H6.588z"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">CSS3</span>
+              </div>
+              <!-- JavaScript -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F7DF1E]/40 hover:bg-[#F7DF1E]/10 hover:shadow-[#F7DF1E]/10" title="JavaScript">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F7DF1E]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.187 18.258c0 .878-.475 1.542-1.385 1.542-.71 0-1.173-.387-1.383-1.029h.45c.143.518.528.847 1 .847.674 0 .895-.417.895-1.066V10h.423v8.258zm2.463 1.384c-.815 0-1.385-.386-1.542-1.072h.437c.13.528.53.847 1.11.847.608 0 .976-.285.976-.814 0-.476-.328-.68-.97-.833l-.683-.162c-.854-.202-1.228-.609-1.228-1.295 0-.756.634-1.32 1.543-1.32.748 0 1.267.332 1.458.948h-.42c-.156-.447-.487-.714-1.033-.714-.555 0-.895.285-.895.748 0 .426.27.608.857.747l.683.163c.875.209 1.246.577 1.246 1.353 0 .783-.675 1.355-1.602 1.355z" />
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">JavaScript</span>
+              </div>
+              <!-- React -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#61DAFB]/40 hover:bg-[#61DAFB]/10 hover:shadow-[#61DAFB]/10" title="React">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#61DAFB]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(0 12 12)"/>
+                  <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(60 12 12)"/>
+                  <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(120 12 12)"/>
+                  <circle cx="12" cy="12" r="2" fill="currentColor"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">React</span>
+              </div>
+              <!-- Tailwind CSS -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#06B6D4]/40 hover:bg-[#06B6D4]/10 hover:shadow-[#06B6D4]/10" title="Tailwind CSS">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#06B6D4]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 14.881 12 18 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 15.121 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.392 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 9.121 12 6.001 12z"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Tailwind CSS</span>
+              </div>
+              <!-- Bootstrap -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#7952B3]/40 hover:bg-[#7952B3]/10 hover:shadow-[#7952B3]/10" title="Bootstrap">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#7952B3]" viewBox="0 0 24 24" fill="currentColor">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12zm-15.69-5.114c0-.495.397-.872.937-.872h4.593c1.472 0 2.338.72 2.338 1.776 0 .809-.569 1.407-1.428 1.636v.077c1.077.195 1.782.887 1.782 1.956 0 1.217-.999 1.996-2.632 1.996h-5.59a.933.933 0 01-.937-.937v-5.633zm2.534.887v1.89h1.936c.795 0 1.23-.332 1.23-.938 0-.573-.427-.952-1.23-.952h-1.936zm0 3.232v2.138h2.155c.896 0 1.373-.376 1.373-1.047 0-.693-.477-1.091-1.373-1.091h-2.155z" />
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Bootstrap</span>
+              </div>
+              <!-- Node.js -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#339933]/40 hover:bg-[#339933]/10 hover:shadow-[#339933]/10" title="Node.js">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#339933]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L2 7.75v11.5L12 22l10-5.75V7.75L12 2zm-1.25 15.28c-1.63-.2-2.73-1.4-2.8-3.08h1.86c.07.72.63 1.35 1.5 1.46.94.12 1.7-.35 1.84-1.18.23-1.36-1.07-1.67-2.16-1.92-1.74-.4-3.5-.83-3.1-3.23.27-1.64 1.76-2.58 3.32-2.43 1.4.14 2.3 1.07 2.44 2.38h-1.85c-.07-.57-.5-.98-1.18-1.03-.68-.05-1.2.22-1.27.76-.1 1.08.83 1.33 1.8 1.54 1.7.38 3.65.82 3.33 3.25-.26 2.02-1.9 2.68-3.9 2.5z"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Node.js</span>
+              </div>
+              <!-- Java -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#EA2D2E]/40 hover:bg-[#EA2D2E]/10 hover:shadow-[#EA2D2E]/10" title="Java">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#EA2D2E]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.467 15.694s-1.808.625-3.805.111c-2.43-.625-4.832-2.611-7.234-2.611-2.43 0-3.32.903-3.32.903S7.09 13 8.791 13c1.7 0 3.395.778 5.797 1.389 2.326.597 4.879.167 4.879.167v1.138zM21 18s-2.5 1.5-6.5.75c-4.5-.844-7.5-3.75-12-3.75-3 0-2.5 1.5-2.5 1.5s2.5.75 4.5.75c4.5 0 7.5 3 12 3.75 3.5.583 4.5-3 4.5-3zm-11.83-9.4c-.1-.13-.23-.25-.37-.37.28-.35.61-.66.97-.93-.33-.06-.66-.1-.99-.13.3-.13.62-.24.96-.34-.73-.24-1.52-.39-2.31-.46.36-.21.75-.4 1.15-.55C8.01 5.37 7.02 5.2 6.01 5.17c1 .36 1.93.84 2.75 1.42-.51.04-1.01.12-1.5.24.87.5 1.63 1.12 2.27 1.83-.8-.08-1.59-.1-2.36-.06.74.65 1.36 1.43 1.82 2.3-.92-.25-1.84-.42-2.75-.5 1.05 1.03 1.83 2.29 2.27 3.69-.9-.55-1.87-1.01-2.88-1.37.95 1.5 1.58 3.19 1.82 4.96-.92-.83-1.95-1.54-3.04-2.11 1.04 2.2 1.45 4.6 1.17 7-.55-1.1-1.22-2.12-1.99-3.03.36 2.3.06 4.63-.9 6.8 1.44-2 2.45-4.32 2.91-6.8 0 0 .5 2.5-1.5 4.5v.5s2.5-1.5 2.5-5.5c.01-2.34-.35-4.66-1.06-6.89.87.57 1.66 1.25 2.34 2.02-.32-1.78-.99-3.46-1.98-4.94.9.23 1.76.57 2.55 1.02-.07-1.33-.49-2.61-1.23-3.72.77.06 1.52.22 2.24.47-.32-1.03-.89-1.97-1.66-2.76 1.13-.1 2.23.09 3.26.57z" />
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Java</span>
+              </div>
+              <!-- PHP -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#777BB4]/40 hover:bg-[#777BB4]/10 hover:shadow-[#777BB4]/10" title="PHP">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#777BB4]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM7.5 16.5H5.8l1-4.7H5l.3-1.4h1.8l.6-2.9h1.7l-.6 2.9h1.6l.6-2.9H12l-.6 2.9h1.7L12.5 15h-1.7l.6-2.8H9.8l-.6 2.8H7.5zm7.3 0h-1.7l1.1-5h-1.6l-.3 1.4h-1.7l.6-2.9h4.3l.5-2h1.7l-.5 2h2.2l-.3 1.4h-2.2l-.8 3.6c-.2.9.3 1.5 1.2 1.5h.7l-.3 1.4c-.4.1-.9.1-1.4.1-1.9 0-3-1.1-2.6-3.2l.6-2.8h-1.6l-1 4.7z" />
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">PHP</span>
+              </div>
+              <!-- MySQL -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#4479A1]/40 hover:bg-[#4479A1]/10 hover:shadow-[#4479A1]/10" title="MySQL">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#4479A1]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 18.5c-4.142 0-7.5-1.567-7.5-3.5s3.358-3.5 7.5-3.5 7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5zm0-4.5c-4.142 0-7.5-1.567-7.5-3.5s3.358-3.5 7.5-3.5 7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5zm0-4.5c-4.142 0-7.5-1.567-7.5-3.5S7.858 3 12 3s7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5z" />
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">MySQL</span>
+              </div>
+              <!-- Git -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F05032]/40 hover:bg-[#F05032]/10 hover:shadow-[#F05032]/10" title="Git">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F05032]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.546 10.93L13.07.45c-.607-.607-1.587-.607-2.194 0L8.8 2.52l3.353 3.353c.732-.248 1.57-.087 2.155.498.586.586.747 1.425.498 2.156l3.353 3.353c.73-.248 1.57-.087 2.156.498.775.776.775 2.033 0 2.808-.775.775-2.033.775-2.808 0-.583-.583-.746-1.417-.502-2.147L14.65 9.682c-.243.242-.564.368-.89.368-.236 0-.474-.065-.688-.198l-2.97 2.97c.133.214.198.452.198.688 0 .326-.126.647-.368.89-.775.775-2.033.775-2.808 0-.775-.775-.775-2.033 0-2.808.243-.243.564-.368.89-.368.236 0 .474.065.688.198l2.97-2.97c-.133-.214-.198-.452-.198-.688 0-.326.126-.647.368-.89.585-.585 1.423-.746 2.155-.5l3.353-3.353L1.57 9.833c-.607.607-.607 1.587 0 2.194L12.046 22.5c.607.608 1.587.608 2.194 0l9.306-9.375c.607-.607.607-1.587 0-2.194z"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Git</span>
+              </div>
+              <!-- GitHub -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10 hover:shadow-white/10" title="GitHub">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.53 1.03 1.53 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">GitHub</span>
+              </div>
+              <!-- Figma -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F24E1E]/40 hover:bg-[#F24E1E]/10 hover:shadow-[#F24E1E]/10" title="Figma">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F24E1E]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8.5 19c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5v-3.5h-7V19zm0-7c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5V8.5h-7V12zm0-7c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5V1.5h-7V5zm7 3.5c1.933 0 3.5-1.567 3.5-3.5S17.433 1.5 15.5 1.5H12v7h3.5zm0 7c1.933 0 3.5-1.567 3.5-3.5s-1.567-3.5-3.5-3.5H12v7h3.5z"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Figma</span>
+              </div>
+              <!-- Visual Studio Code -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#007ACC]/40 hover:bg-[#007ACC]/10 hover:shadow-[#007ACC]/10" title="VS Code">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#007ACC]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.986 6.568l-3.08-2.923c-.189-.18-.492-.18-.68 0L12.59 10.74 4.542 3.123c-.189-.18-.492-.18-.68 0L.373 6.416a1.144 1.144 0 000 1.624L7.543 12 .373 15.96a1.144 1.144 0 000 1.624l3.489 3.293c.189.18.492.18.68 0l8.048-7.617 7.636 7.095c.189.18.492.18.68 0l3.08-2.923a1.144 1.144 0 000-1.624L16.273 12l7.713-7.29a1.144 1.144 0 000-1.624l-.001-.018zM17.65 12l-5.06 4.79v-9.58L17.65 12z"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">VS Code</span>
+              </div>
+              <!-- Antigravity -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#22D3EE]/40 hover:bg-[#22D3EE]/10 hover:shadow-[#22D3EE]/10" title="Antigravity">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#22D3EE]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="10" r="4" />
+                  <path d="M12 2v4M12 14v8M17 10h5M2 10h5" />
+                  <path d="M9 3l3-3 3 3" />
+                  <ellipse cx="12" cy="15" rx="7" ry="2.5" stroke-dasharray="3 3" />
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Antigravity</span>
+              </div>
+              <!-- Claude -->
+              <div class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#D97706]/40 hover:bg-[#D97706]/10 hover:shadow-[#D97706]/10" title="Claude">
+                <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#D97706]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                  <circle cx="9" cy="11" r="1" fill="currentColor"/>
+                  <circle cx="15" cy="11" r="1" fill="currentColor"/>
+                </svg>
+                <span class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Claude</span>
+              </div>
+            </div>
             <div class="about-tags mt-8 flex flex-wrap gap-3">
               <span
                 class="about-tag rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200"
@@ -351,54 +462,260 @@
               Portfolio
             </p>
             <h2 class="font-display text-4xl font-bold text-white sm:text-5xl">
-              <!-- A gallery of elevated, high-contrast work. -->
-              Under Development
+              Academic Scheduler System
             </h2>
+            <p class="mt-4 text-base leading-8 text-slate-300">
+              A comprehensive React/PHP scheduling platform designed for university department administrators to draft class structures, match instructor timetables, and allocate facilities.
+            </p>
           </div>
           <div
-            class="portfolio-grid mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
-            <div
-              class="portfolio-tile reveal reveal-delay-1 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-3 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl">
-              <img
-                class="h-64 w-full rounded-[1.25rem] object-cover"
-                src="images/dash(1).png"
-                alt="Portfolio item" />
+            class="portfolio-grid mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            
+            <!-- Dashboard Command Center -->
+            <div class="portfolio-card group reveal rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
+              <!-- Browser frame mockup -->
+              <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
+                <!-- Browser dot header -->
+                <div class="mb-2 flex items-center gap-1.5 px-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
+                  <div class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
+                    http://localhost:5173/admin/dashboard
+                  </div>
+                </div>
+                <img class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]" src="images/media__1781340880330.png" alt="Chairperson Dashboard" />
+              </div>
+              <!-- Content -->
+              <div class="mt-5">
+                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Chairperson Dashboard</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">The administrative command hub displaying live statistical cards and an event-driven Daily Reports conflict warning stream.</p>
+                
+                <!-- Workflow collapsible section -->
+                <div class="mt-4 border-t border-white/5 pt-4">
+                  <button class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors" data-target="flow-dashboard">
+                    <span>VIEW PROCESS WORKFLOW</span>
+                    <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  <div id="flow-dashboard" class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Flow & Trigger:</strong>
+                        <p class="mt-1 text-slate-400">Pulls statistics for active entities (Instructors, Rooms, Schedules) via concurrent API endpoints during page load.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">2. Business Logic:</strong>
+                        <p class="mt-1 text-slate-400">Aggregates warning logs from the database, identifying modifications and schedule mismatches in real time.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">3. Client Render:</strong>
+                        <p class="mt-1 text-slate-400">Renders summary counts into grid cards alongside an event-driven live report feed showcasing active warnings.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              class="portfolio-tile reveal reveal-delay-2 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-3 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl">
-              <img
-                class="h-64 w-full rounded-[1.25rem] object-cover"
-                src="images/dash(2).png"
-                alt="Portfolio item" />
+
+            <!-- Instructor Manager -->
+            <div class="portfolio-card group reveal rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
+              <!-- Browser frame mockup -->
+              <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
+                <!-- Browser dot header -->
+                <div class="mb-2 flex items-center gap-1.5 px-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
+                  <div class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
+                    http://localhost:5173/admin/instructors
+                  </div>
+                </div>
+                <img class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]" src="images/media__1781340880185.png" alt="Instructor Management" />
+              </div>
+              <!-- Content -->
+              <div class="mt-5">
+                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Instructor Profile Registry</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Profile builder capturing academic rank, qualification levels, and weekly availability constraints.</p>
+                
+                <!-- Workflow collapsible section -->
+                <div class="mt-4 border-t border-white/5 pt-4">
+                  <button class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors" data-target="flow-instructors">
+                    <span>VIEW PROCESS WORKFLOW</span>
+                    <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  <div id="flow-instructors" class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Flow & Trigger:</strong>
+                        <p class="mt-1 text-slate-400">Captures inputs from forms (names, ranks, availability checkboxes) and posts JSON data to the backend.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">2. Business Logic:</strong>
+                        <p class="mt-1 text-slate-400">Validates schema rules, hashes data, and updates availability bitmasks before saving to the database registry.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">3. Client Render:</strong>
+                        <p class="mt-1 text-slate-400">Dynamically updates the instructor grid below with inline action elements (edit, delete) sorted alphabetically.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              class="portfolio-tile reveal reveal-delay-3 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-3 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl">
-              <img
-                class="h-64 w-full rounded-[1.25rem] object-cover"
-                src="images/dash(3).png"
-                alt="Portfolio item" />
+
+            <!-- Faculty Grid Schedule Planner -->
+            <div class="portfolio-card group reveal rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
+              <!-- Browser frame mockup -->
+              <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
+                <!-- Browser dot header -->
+                <div class="mb-2 flex items-center gap-1.5 px-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
+                  <div class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
+                    http://localhost:5173/admin/instructor-schedule
+                  </div>
+                </div>
+                <img class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]" src="images/media__1781340880083.png" alt="Faculty Class Schedule" />
+              </div>
+              <!-- Content -->
+              <div class="mt-5">
+                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Faculty Grid Schedule</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Timetable view rendering instructor assignments, section streams, contact load limits, and weekly workload balances.</p>
+                
+                <!-- Workflow collapsible section -->
+                <div class="mt-4 border-t border-white/5 pt-4">
+                  <button class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors" data-target="flow-faculty">
+                    <span>VIEW PROCESS WORKFLOW</span>
+                    <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  <div id="flow-faculty" class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Flow & Trigger:</strong>
+                        <p class="mt-1 text-slate-400">Selecting an instructor queries all timetable slots linked to their registration identifier.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">2. Business Logic:</strong>
+                        <p class="mt-1 text-slate-400">Checks for overlap constraints and calculates unit load sum against the instructor's policy limits.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">3. Client Render:</strong>
+                        <p class="mt-1 text-slate-400">Populates timetable slots on a grid grouped by day/time, color-coded by course classification tags.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              class="portfolio-tile reveal overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-3 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl">
-              <img
-                class="h-64 w-full rounded-[1.25rem] object-cover"
-                src="images/dash(4).png"
-                alt="Portfolio item" />
+
+            <!-- Student Schedule Timetable Modal -->
+            <div class="portfolio-card group reveal rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
+              <!-- Browser frame mockup -->
+              <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
+                <!-- Browser dot header -->
+                <div class="mb-2 flex items-center gap-1.5 px-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
+                  <div class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
+                    http://localhost:5173/admin/class-schedules
+                  </div>
+                </div>
+                <img class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]" src="images/media__1781340880220.png" alt="Student Class Schedule" />
+              </div>
+              <!-- Content -->
+              <div class="mt-5">
+                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Student Schedule Modal</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Pop-up dialog mapping weekly schedules, instructors, and room assets for select student cohorts.</p>
+                
+                <!-- Workflow collapsible section -->
+                <div class="mt-4 border-t border-white/5 pt-4">
+                  <button class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors" data-target="flow-student">
+                    <span>VIEW PROCESS WORKFLOW</span>
+                    <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  <div id="flow-student" class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Flow & Trigger:</strong>
+                        <p class="mt-1 text-slate-400">Clicking a student section triggers an asynchronous query fetching active schedules for that specific section.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">2. Business Logic:</strong>
+                        <p class="mt-1 text-slate-400">Validates that all courses associated with the curriculum of that section are mapped without gaps.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">3. Client Render:</strong>
+                        <p class="mt-1 text-slate-400">Renders the modal overlay containing the section's week-at-a-glance layout with browser-native printing actions.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              class="portfolio-tile reveal reveal-delay-1 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-3 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl">
-              <img
-                class="h-64 w-full rounded-[1.25rem] object-cover"
-                src="images/dash(5).png"
-                alt="Portfolio item" />
+
+            <!-- Room Schedule Modal -->
+            <div class="portfolio-card group reveal rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
+              <!-- Browser frame mockup -->
+              <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
+                <!-- Browser dot header -->
+                <div class="mb-2 flex items-center gap-1.5 px-2">
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
+                  <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
+                  <div class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
+                    http://localhost:5173/admin/rooms
+                  </div>
+                </div>
+                <img class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]" src="images/media__1781340880285.png" alt="Room Utilization Schedule" />
+              </div>
+              <!-- Content -->
+              <div class="mt-5">
+                <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Room Utilization Modal</h3>
+                <p class="mt-2 text-sm text-slate-400 leading-relaxed">Utilization tracker displaying dynamic room timetables, course assignments, and print/export hooks.</p>
+                
+                <!-- Workflow collapsible section -->
+                <div class="mt-4 border-t border-white/5 pt-4">
+                  <button class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors" data-target="flow-room">
+                    <span>VIEW PROCESS WORKFLOW</span>
+                    <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  
+                  <div id="flow-room" class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Flow & Trigger:</strong>
+                        <p class="mt-1 text-slate-400">Fetches database records for room bookings mapped to the selected physical space ID.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">2. Business Logic:</strong>
+                        <p class="mt-1 text-slate-400">Verifies facility allocation limits, detecting and highlighting any duplicate time-room assignments.</p>
+                      </div>
+                      <div>
+                        <strong class="text-white uppercase tracking-wider text-[10px]">3. Client Render:</strong>
+                        <p class="mt-1 text-slate-400">Generates room utilization grid with customized visual styles and interactive PDF export bindings.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              class="portfolio-tile reveal reveal-delay-2 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 p-3 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl">
-              <img
-                class="h-64 w-full rounded-[1.25rem] object-cover"
-                src="images/dash(8).png"
-                alt="Portfolio item" />
-            </div>
+
           </div>
         </div>
       </section>

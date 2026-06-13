@@ -8,31 +8,8 @@ if (toggle && nav) {
   });
 }
 
-// Persistent light/dark theme toggle
-const themeToggles = document.querySelectorAll(".theme-toggle");
-
-function applyTheme(theme) {
-  document.body.dataset.theme = theme;
-  localStorage.setItem("theme", theme);
-
-  themeToggles.forEach((button) => {
-    button.setAttribute("aria-pressed", String(theme === "light"));
-
-    const label = button.querySelector(".theme-toggle-label");
-    const icon = button.querySelector(".theme-toggle-icon");
-
-    if (label) {
-      label.textContent = theme === "light" ? "Dark Mode" : "Light Mode";
-    }
-
-    if (icon) {
-      icon.textContent = theme === "light" ? "☾" : "☀";
-    }
-  });
-}
-
-const savedTheme = localStorage.getItem("theme") || "dark";
-applyTheme(savedTheme);
+// Theme locked to dark mode
+document.body.dataset.theme = "dark";
 
 // Section scroll reveal
 const revealEls = document.querySelectorAll(".section-stage .reveal");
@@ -56,9 +33,25 @@ if (
   revealEls.forEach((el) => el.classList.add("is-visible"));
 }
 
-themeToggles.forEach((button) => {
+// Workflow details toggle in portfolio section
+document.querySelectorAll(".workflow-toggle").forEach((button) => {
   button.addEventListener("click", () => {
-    applyTheme(document.body.dataset.theme === "light" ? "dark" : "light");
+    const targetId = button.getAttribute("data-target");
+    const details = document.getElementById(targetId);
+    const svg = button.querySelector("svg");
+    
+    if (details) {
+      const isOpen = details.classList.contains("open");
+      if (isOpen) {
+        details.classList.remove("open");
+        details.style.maxHeight = null;
+        svg?.classList.remove("rotate-180");
+      } else {
+        details.classList.add("open");
+        details.style.maxHeight = details.scrollHeight + "px";
+        svg?.classList.add("rotate-180");
+      }
+    }
   });
 });
 
