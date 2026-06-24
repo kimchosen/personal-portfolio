@@ -793,6 +793,15 @@
   transition-delay: 240ms;
 }
 
+@media (max-width: 768px) {
+  .section-stage .reveal {
+    transform: translateY(16px) translateZ(0);
+    transition:
+      opacity 450ms ease,
+      transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
 /* ─── Light mode: transform sections to light canvas ─── */
 body[data-theme="light"] .section-stage {
   background-color: #f8fafc;
@@ -1367,3 +1376,49 @@ body[data-theme="light"] .section-contact:hover::before {
     inset 0 1px 0 rgba(255, 255, 255, 0.95),
     0 0 40px rgba(8, 145, 178, 0.08) !important;
 }
+
+/* ─── Infinite Skills Marquee ─── */
+@keyframes skillsMarqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.skills-marquee-wrapper {
+  perspective: 1200px;
+}
+
+.skills-marquee-track {
+  display: flex;
+  width: max-content;
+  transform-style: preserve-3d;
+  transform: rotateX(8deg) rotateY(-4deg) rotateZ(0.5deg);
+  animation: skillsMarqueeScroll 28s linear infinite;
+  transition: animation-play-state 300ms ease;
+}
+
+.skills-marquee-wrapper:hover .skills-marquee-track {
+  animation-play-state: paused;
+}
+
+.skills-marquee-content {
+  display: flex;
+  gap: 1rem;
+}
+
+.skills-marquee-content > div {
+  transform: translateZ(0);
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.skills-marquee-content > div:hover {
+  transform: translateY(-8px) translateZ(40px) scale(1.12);
+  z-index: 50;
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(34, 211, 238, 0.3);
+}
+
