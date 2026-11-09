@@ -4,1013 +4,267 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kim Arvin Pinili — Portfolio</title>
+  <title>Kim Arvin Pinili &mdash; Full-Stack Web Developer Portfolio</title>
+  <meta name="description"
+    content="Personal portfolio of Kim Arvin Pinili, an aspiring full-stack web developer and graduating Computer Science student." />
+
+  <!-- Theme init script to prevent flash of wrong theme -->
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+
+  <!-- Fonts: Inter (Elegant, Simple, Clean) & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
+
+  <!-- Tailwind CDN & Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind = {
+    tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ["Inter", "system-ui", "sans-serif"],
-            display: [
-              "Pulp Display",
-              "Space Grotesk",
-              "Inter",
-              "system-ui",
-              "sans-serif",
-            ],
+            sans: ["'Inter'", "system-ui", "-apple-system", "sans-serif"],
+            mono: ["'JetBrains Mono'", "monospace"],
           },
-          boxShadow: {
-            glow: "0 24px 80px rgba(34, 211, 238, 0.16)",
-            neon: "0 20px 60px rgba(250, 204, 21, 0.16)",
+          colors: {
+            brand: {
+              50: "#f0f9ff",
+              100: "#e0f2fe",
+              200: "#bae6fd",
+              300: "#7dd3fc",
+              400: "#38bdf8",
+              500: "#0ea5e9",
+              600: "#0284c7",
+              700: "#0369a1",
+              800: "#075985",
+            },
           },
         },
       },
     };
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Stylesheets -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="sections.css" />
 </head>
 
-<body data-theme="dark"
-  class="min-h-screen bg-slate-950 font-sans text-slate-100 antialiased selection:bg-cyan-300 selection:text-slate-950">
-  <div class="page-background pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-    <div class="absolute left-[-10%] top-[-8%] h-96 w-96 rounded-full bg-cyan-400/20 blur-3xl"></div>
-    <div class="absolute right-[-10%] top-[18%] h-[28rem] w-[28rem] rounded-full bg-fuchsia-500/20 blur-3xl"></div>
-    <div class="absolute bottom-[-12%] left-[20%] h-[24rem] w-[24rem] rounded-full bg-amber-300/10 blur-3xl"></div>
-    <div
-      class="page-overlay absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.08),_transparent_32%),linear-gradient(to_bottom,_rgba(2,6,23,0.4),_rgba(2,6,23,0.95))]">
-    </div>
-  </div>
+<body
+  class="min-h-screen bg-[#f8fafc] dark:bg-[#090d16] font-sans text-slate-900 dark:text-slate-100 antialiased selection:bg-sky-500 selection:text-white transition-colors duration-200">
 
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl">
-    <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-      <a href="#home" class="font-display text-xl font-bold tracking-wide text-white">
-        About <span class="text-cyan-300">Me</span>
+  <!-- Subtle Ambient Background Light -->
+  <div class="page-bg-mesh"></div>
+
+  <!-- ─── HEADER / NAVBAR ─── -->
+  <header
+    class="sticky top-0 z-50 border-b border-slate-200/90 dark:border-white/10 bg-white/90 dark:bg-[#090d16]/90 backdrop-blur-xl transition-all">
+    <div class="mx-auto flex w-full max-w-5xl items-center justify-between px-5 py-3.5">
+      <!-- Logo / Brand -->
+      <a href="#home" class="group flex items-center gap-2.5">
+        <span
+          class="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-600 font-bold text-white text-xs shadow-sm transition-transform duration-200 group-hover:scale-105">
+          KP
+        </span>
+        <div class="flex flex-col">
+          <span
+            class="text-sm font-bold tracking-tight text-slate-900 dark:text-white transition-colors group-hover:text-sky-600 dark:group-hover:text-sky-400">
+            Kim Arvin Pinili
+          </span>
+          <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400">Full-Stack Web Dev</span>
+        </div>
       </a>
-      <div class="flex items-center gap-3">
-        <!-- <button
-          class="theme-toggle inline-flex h-11 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-sm font-semibold text-white backdrop-blur"
-          aria-pressed="false" aria-label="Toggle color theme">
-          <span class="theme-toggle-icon">☀</span>
-          <span class="theme-toggle-label hidden sm:inline">Light Mode</span>
-        </button> -->
-        <button
-          class="nav-toggle inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white lg:hidden"
-          aria-label="Toggle navigation">
-          <span></span><span></span><span></span>
+
+      <!-- Desktop Navigation -->
+      <nav class="site-nav hidden lg:block relative">
+        <ul class="flex items-center gap-1 text-xs font-semibold text-slate-700 dark:text-slate-300 relative">
+          <li>
+            <a class="transition-colors hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-full relative z-10 block"
+              href="#home">Home</a>
+          </li>
+          <li>
+            <a class="transition-colors hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-full relative z-10 block"
+              href="#about">About</a>
+          </li>
+          <li>
+            <a class="transition-colors hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-full relative z-10 block"
+              href="#skills">Skills</a>
+          </li>
+          <li>
+            <a class="transition-colors hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-full relative z-10 block"
+              href="#projects">Projects</a>
+          </li>
+          <li>
+            <a class="transition-colors hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-full relative z-10 block"
+              href="#services">Services</a>
+          </li>
+          <li>
+            <a class="transition-colors hover:text-slate-950 dark:hover:text-white px-3 py-1.5 rounded-full relative z-10 block"
+              href="#contact">Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right Header Actions (Theme Toggle & CTA) -->
+      <div class="flex items-center gap-2.5">
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" aria-label="Toggle theme" title="Toggle night / light appearance"
+          class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 shadow-2xs transition-all hover:border-slate-400 hover:bg-slate-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:border-white/20 dark:hover:bg-white/10">
+          <!-- Sun Icon (shown in dark mode) -->
+          <svg class="sun-icon h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          <!-- Moon Icon (shown in light mode) -->
+          <svg class="moon-icon h-4 w-4 text-slate-700 dark:text-slate-300" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
         </button>
-        <nav class="site-nav hidden lg:block relative">
-          <ul class="flex items-center gap-4 text-sm font-medium text-slate-300 relative">
-            <li>
-              <a class="transition hover:text-cyan-300 px-4 py-1.5 rounded-full relative z-10 block"
-                href="#home">Home</a>
-            </li>
-            <li>
-              <a class="transition hover:text-cyan-300 px-4 py-1.5 rounded-full relative z-10 block"
-                href="#about">About</a>
-            </li>
-            <li>
-              <a class="transition hover:text-cyan-300 px-4 py-1.5 rounded-full relative z-10 block"
-                href="#services">Services</a>
-            </li>
-            <li>
-              <a class="transition hover:text-cyan-300 px-4 py-1.5 rounded-full relative z-10 block"
-                href="#portfolio">Portfolio</a>
-            </li>
-            <!-- <li>
-                <a
-                  class="transition hover:text-cyan-300 px-4 py-1.5 rounded-full relative z-10 block"
-                  href="#experience"
-                  >Experience</a
-                >
-              </li> -->
-            <li>
-              <a class="transition hover:text-cyan-300 px-4 py-1.5 rounded-full relative z-10 block"
-                href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
+
+        <!-- Desktop Direct Action -->
+        <div class="hidden lg:flex items-center">
+          <a href="#contact"
+            class="inline-flex items-center gap-1.5 rounded-full border border-sky-600/30 bg-sky-50 dark:bg-sky-500/10 dark:border-sky-500/20 px-3.5 py-1.5 text-xs font-semibold text-sky-800 dark:text-sky-300 transition-all duration-200 hover:bg-sky-600 hover:text-white dark:hover:bg-sky-500 dark:hover:text-slate-950 shadow-xs">
+            <span>Let's Talk</span>
+            <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button
+          class="nav-toggle lg:hidden border border-slate-300 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-white/10"
+          aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
   </header>
 
-
-
+  <!-- ─── MAIN CONTENT ─── -->
   <main class="relative">
-    <section id="home" class="section-stage section-home px-6 py-16 lg:px-8 lg:py-24">
-      <div class="section-inner mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div class="hero-copy max-w-2xl reveal">
-          <div
-            class="mb-6 inline-flex items-center gap-3 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-100 shadow-glow backdrop-blur">
-            <span class="h-2.5 w-2.5 rounded-full bg-cyan-300"></span>
-            Available for Entry-Level Opportunities
-          </div>
-          <h1 class="font-display text-5xl font-bold leading-tight text-white sm:text-6xl lg:text-7xl">
-            I'm
-            <span class="bg-gradient-to-r from-cyan-300 via-white to-amber-200 bg-clip-text text-transparent">Kim Arvin
-              Pinili</span>
-          </h1>
-          <h2 class="text-xl font-medium text-white mt-3">
-            Aspiring Web Developer
-          </h2>
-          <p class="mt-6 max-w-xl text-md leading-8 text-slate-300 sm:text-xl">
-            I build web applications that solve real-world problems.
-            Passionate about software development, UI/UX design, and creating
-            efficient systems through modern technologies.
-          </p>
-          <div class="mt-10 flex flex-wrap gap-4">
-            <a href="#contact"
-              class="inline-flex items-center justify-center rounded-full bg-cyan-300 px-6 py-3 font-semibold text-slate-950 shadow-glow transition duration-300 hover:-translate-y-1 hover:bg-cyan-200">
-              Hire Me
-            </a>
-            <a href="#portfolio"
-              class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 font-semibold text-white backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:bg-white/10">
-              View Portfolio
-            </a>
-          </div>
-          <div class="hero-stats mt-10 grid max-w-lg grid-cols-3 gap-4 text-center">
-            <div class="hero-stat rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-xl">
-              <div class="text-2xl font-bold text-white">2+</div>
-              <div class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-400">
-                projects
-              </div>
-            </div>
-            <div class="hero-stat rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-xl">
-              <div class="text-2xl font-bold text-white">7+</div>
-              <div class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-400">
-                technologies
-              </div>
-            </div>
-            <div class="hero-stat rounded-2xl border border-white/10 bg-white/5 px-4 py-4 backdrop-blur-xl">
-              <div class="text-2xl font-bold text-white">2026</div>
-              <div class="mt-1 text-xs uppercase tracking-[0.2em] text-slate-400">
-                graduation
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-visual relative mx-auto w-full max-w-xl reveal reveal-delay-2">
-          <div
-            class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-cyan-300/20 via-transparent to-fuchsia-500/20 blur-2xl">
-          </div>
-          <div
-            class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-4 shadow-[0_30px_120px_rgba(15,23,42,0.55)] backdrop-blur-xl">
-            <div class="relative overflow-hidden rounded-[1.5rem] border border-white/10 bg-slate-900/60 p-4">
-              <div
-                class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(34,211,238,0.22),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(250,204,21,0.14),_transparent_30%)]">
-              </div>
-              <img class="relative h-[26rem] w-full rounded-[1.25rem] object-cover object-center md:h-[32rem]"
-                src="images/me.png" alt="Portrait" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="about" class="section-stage section-about px-6 py-16 lg:px-8 lg:py-24">
-      <div class="section-inner mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div class="about-visual relative order-2 lg:order-1 reveal">
-          <div class="absolute -inset-4 rounded-[2rem] bg-cyan-300/10 blur-xl"></div>
-          <div
-            class="about-frame relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-3 shadow-[0_24px_100px_rgba(2,6,23,0.6)] backdrop-blur-xl">
-            <img class="h-[32rem] w-full rounded-[1.5rem] object-cover object-center" src="images/4.jpg"
-              alt="About portrait" />
-          </div>
-        </div>
-        <div class="order-1 lg:order-2 reveal reveal-delay-1">
-          <p class="section-kicker mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
-            About Me
-          </p>
-          <h2 class="font-display text-4xl font-bold text-white sm:text-5xl">
-            Passionate about technology, problem-solving, and building digital
-            solutions.
-          </h2>
-          <p class="mt-6 max-w-2xl text-base leading-8 text-slate-300">
-            A graduating Computer Science student passionate about software development, web
-            technologies, and building digital solutions that solve real-world
-            problems.
-          </p>
-          <div class="skills-marquee-wrapper mt-8 relative w-full overflow-hidden py-6">
-            <div
-              class="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-950 via-slate-950/50 to-transparent z-10 pointer-events-none">
-            </div>
-            <div
-              class="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-950 via-slate-950/50 to-transparent z-10 pointer-events-none">
+    <!-- ─── 1. HERO SECTION ─── -->
+    <section id="home" class="relative px-5 pt-12 pb-16 md:pt-16 md:pb-24 lg:px-8">
+      <div class="mx-auto max-w-5xl">
+        <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+
+          <!-- Hero Copy (7 cols on lg) -->
+          <div class="lg:col-span-7 reveal">
+            <!-- Availability Pill -->
+            <div class="badge-pill mb-5">
+              <span class="pulse-dot"></span>
+              <span>Available for Entry-Level Roles &amp; Internships</span>
             </div>
 
-            <div class="skills-marquee-track flex">
-              <!-- Set 1 -->
-              <div class="skills-marquee-content flex gap-3.5 shrink-0 px-2">
-                <!-- HTML5 -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#E34F26]/40 hover:bg-[#E34F26]/10 hover:shadow-[#E34F26]/10"
-                  title="HTML5">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#E34F26]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.343 3.867L12 19.219l5.377-1.482.744-8.312H8.531z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">HTML5</span>
-                </div>
-                <!-- CSS3 -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#1572B6]/40 hover:bg-[#1572B6]/10 hover:shadow-[#1572B6]/10"
-                  title="CSS3">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#1572B6]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm5.088 5.438l.383 4.312h8.04l-.227 2.562H6.968l.188 2.113h8.086l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.343 3.867L12 19.219l5.377-1.482.88-9.844H7.203L6.82 5.438h10.978l.23-2.622H6.588z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">CSS3</span>
-                </div>
-                <!-- JavaScript -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F7DF1E]/40 hover:bg-[#F7DF1E]/10 hover:shadow-[#F7DF1E]/10"
-                  title="JavaScript">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F7DF1E]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.187 18.258c0 .878-.475 1.542-1.385 1.542-.71 0-1.173-.387-1.383-1.029h.45c.143.518.528.847 1 .847.674 0 .895-.417.895-1.066V10h.423v8.258zm2.463 1.384c-.815 0-1.385-.386-1.542-1.072h.437c.13.528.53.847 1.11.847.608 0 .976-.285.976-.814 0-.476-.328-.68-.97-.833l-.683-.162c-.854-.202-1.228-.609-1.228-1.295 0-.756.634-1.32 1.543-1.32.748 0 1.267.332 1.458.948h-.42c-.156-.447-.487-.714-1.033-.714-.555 0-.895.285-.895.748 0 .426.27.608.857.747l.683.163c.875.209 1.246.577 1.246 1.353 0 .783-.675 1.355-1.602 1.355z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">JavaScript</span>
-                </div>
-                <!-- React -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#61DAFB]/40 hover:bg-[#61DAFB]/10 hover:shadow-[#61DAFB]/10"
-                  title="React">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#61DAFB]"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(0 12 12)" />
-                    <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(60 12 12)" />
-                    <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(120 12 12)" />
-                    <circle cx="12" cy="12" r="2" fill="currentColor" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">React</span>
-                </div>
-                <!-- Tailwind CSS -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#06B6D4]/40 hover:bg-[#06B6D4]/10 hover:shadow-[#06B6D4]/10"
-                  title="Tailwind CSS">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#06B6D4]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 14.881 12 18 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 15.121 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.392 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 9.121 12 6.001 12z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Tailwind
-                    CSS</span>
-                </div>
-                <!-- Bootstrap -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#7952B3]/40 hover:bg-[#7952B3]/10 hover:shadow-[#7952B3]/10"
-                  title="Bootstrap">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#7952B3]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12zm-15.69-5.114c0-.495.397-.872.937-.872h4.593c1.472 0 2.338.72 2.338 1.776 0 .809-.569 1.407-1.428 1.636v.077c1.077.195 1.782.887 1.782 1.956 0 1.217-.999 1.996-2.632 1.996h-5.59a.933.933 0 01-.937-.937v-5.633zm2.534.887v1.89h1.936c.795 0 1.23-.332 1.23-.938 0-.573-.427-.952-1.23-.952h-1.936zm0 3.232v2.138h2.155c.896 0 1.373-.376 1.373-1.047 0-.693-.477-1.091-1.373-1.091h-2.155z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Bootstrap</span>
-                </div>
-                <!-- Node.js -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#339933]/40 hover:bg-[#339933]/10 hover:shadow-[#339933]/10"
-                  title="Node.js">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#339933]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2L2 7.75v11.5L12 22l10-5.75V7.75L12 2zm-1.25 15.28c-1.63-.2-2.73-1.4-2.8-3.08h1.86c.07.72.63 1.35 1.5 1.46.94.12 1.7-.35 1.84-1.18.23-1.36-1.07-1.67-2.16-1.92-1.74-.4-3.5-.83-3.1-3.23.27-1.64 1.76-2.58 3.32-2.43 1.4.14 2.3 1.07 2.44 2.38h-1.85c-.07-.57-.5-.98-1.18-1.03-.68-.05-1.2.22-1.27.76-.1 1.08.83 1.33 1.8 1.54 1.7.38 3.65.82 3.33 3.25-.26 2.02-1.9 2.68-3.9 2.5z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Node.js</span>
-                </div>
-                <!-- Java -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#EA2D2E]/40 hover:bg-[#EA2D2E]/10 hover:shadow-[#EA2D2E]/10"
-                  title="Java">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#EA2D2E]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M19.467 15.694s-1.808.625-3.805.111c-2.43-.625-4.832-2.611-7.234-2.611-2.43 0-3.32.903-3.32.903S7.09 13 8.791 13c1.7 0 3.395.778 5.797 1.389 2.326.597 4.879.167 4.879.167v1.138zM21 18s-2.5 1.5-6.5.75c-4.5-.844-7.5-3.75-12-3.75-3 0-2.5 1.5-2.5 1.5s2.5.75 4.5.75c4.5 0 7.5 3 12 3.75 3.5.583 4.5-3 4.5-3zm-11.83-9.4c-.1-.13-.23-.25-.37-.37.28-.35.61-.66.97-.93-.33-.06-.66-.1-.99-.13.3-.13.62-.24.96-.34-.73-.24-1.52-.39-2.31-.46.36-.21.75-.4 1.15-.55C8.01 5.37 7.02 5.2 6.01 5.17c1 .36 1.93.84 2.75 1.42-.51.04-1.01.12-1.5.24.87.5 1.63 1.12 2.27 1.83-.8-.08-1.59-.1-2.36-.06.74.65 1.36 1.43 1.82 2.3-.92-.25-1.84-.42-2.75-.5 1.05 1.03 1.83 2.29 2.27 3.69-.9-.55-1.87-1.01-2.88-1.37.95 1.5 1.58 3.19 1.82 4.96-.92-.83-1.95-1.54-3.04-2.11 1.04 2.2 1.45 4.6 1.17 7-.55-1.1-1.22-2.12-1.99-3.03.36 2.3.06 4.63-.9 6.8 1.44-2 2.45-4.32 2.91-6.8 0 0 .5 2.5-1.5 4.5v.5s2.5-1.5 2.5-5.5c.01-2.34-.35-4.66-1.06-6.89.87.57 1.66 1.25 2.34 2.02-.32-1.78-.99-3.46-1.98-4.94.9.23 1.76.57 2.55 1.02-.07-1.33-.49-2.61-1.23-3.72.77.06 1.52.22 2.24.47-.32-1.03-.89-1.97-1.66-2.76 1.13-.1 2.23.09 3.26.57z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Java</span>
-                </div>
-                <!-- PHP -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#777BB4]/40 hover:bg-[#777BB4]/10 hover:shadow-[#777BB4]/10"
-                  title="PHP">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#777BB4]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM7.5 16.5H5.8l1-4.7H5l.3-1.4h1.8l.6-2.9h1.7l-.6 2.9h1.6l.6-2.9H12l-.6 2.9h1.7L12.5 15h-1.7l.6-2.8H9.8l-.6 2.8H7.5zm7.3 0h-1.7l1.1-5h-1.6l-.3 1.4h-1.7l.6-2.9h4.3l.5-2h1.7l-.5 2h2.2l-.3 1.4h-2.2l-.8 3.6c-.2.9.3 1.5 1.2 1.5h.7l-.3 1.4c-.4.1-.9.1-1.4.1-1.9 0-3-1.1-2.6-3.2l.6-2.8h-1.6l-1 4.7z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">PHP</span>
-                </div>
-                <!-- MySQL -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#4479A1]/40 hover:bg-[#4479A1]/10 hover:shadow-[#4479A1]/10"
-                  title="MySQL">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#4479A1]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 18.5c-4.142 0-7.5-1.567-7.5-3.5s3.358-3.5 7.5-3.5 7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5zm0-4.5c-4.142 0-7.5-1.567-7.5-3.5s3.358-3.5 7.5-3.5 7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5zm0-4.5c-4.142 0-7.5-1.567-7.5-3.5S7.858 3 12 3s7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">MySQL</span>
-                </div>
-                <!-- Git -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F05032]/40 hover:bg-[#F05032]/10 hover:shadow-[#F05032]/10"
-                  title="Git">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F05032]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M23.546 10.93L13.07.45c-.607-.607-1.587-.607-2.194 0L8.8 2.52l3.353 3.353c.732-.248 1.57-.087 2.155.498.586.586.747 1.425.498 2.156l3.353 3.353c.73-.248 1.57-.087 2.156.498.775.776.775 2.033 0 2.808-.775.775-2.033.775-2.808 0-.583-.583-.746-1.417-.502-2.147L14.65 9.682c-.243.242-.564.368-.89.368-.236 0-.474-.065-.688-.198l-2.97 2.97c.133.214.198.452.198.688 0 .326-.126.647-.368.89-.775.775-2.033.775-2.808 0-.775-.775-.775-2.033 0-2.808.243-.243.564-.368.89-.368.236 0 .474.065.688.198l2.97-2.97c-.133-.214-.198-.452-.198-.688 0-.326.126-.647.368-.89.585-.585 1.423-.746 2.155-.5l3.353-3.353L1.57 9.833c-.607.607-.607 1.587 0 2.194L12.046 22.5c.607.608 1.587.608 2.194 0l9.306-9.375c.607-.607.607-1.587 0-2.194z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Git</span>
-                </div>
-                <!-- GitHub -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10 hover:shadow-white/10"
-                  title="GitHub">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-white"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.53 1.03 1.53 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">GitHub</span>
-                </div>
-                <!-- Figma -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F24E1E]/40 hover:bg-[#F24E1E]/10 hover:shadow-[#F24E1E]/10"
-                  title="Figma">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F24E1E]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M8.5 19c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5v-3.5h-7V19zm0-7c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5V8.5h-7V12zm0-7c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5V1.5h-7V5zm7 3.5c1.933 0 3.5-1.567 3.5-3.5S17.433 1.5 15.5 1.5H12v7h3.5zm0 7c1.933 0 3.5-1.567 3.5-3.5s-1.567-3.5-3.5-3.5H12v7h3.5z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Figma</span>
-                </div>
-                <!-- Visual Studio Code -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#007ACC]/40 hover:bg-[#007ACC]/10 hover:shadow-[#007ACC]/10"
-                  title="VS Code">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#007ACC]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M23.986 6.568l-3.08-2.923c-.189-.18-.492-.18-.68 0L12.59 10.74 4.542 3.123c-.189-.18-.492-.18-.68 0L.373 6.416a1.144 1.144 0 000 1.624L7.543 12 .373 15.96a1.144 1.144 0 000 1.624l3.489 3.293c.189.18.492.18.68 0l8.048-7.617 7.636 7.095c.189.18.492.18.68 0l3.08-2.923a1.144 1.144 0 000-1.624L16.273 12l7.713-7.29a1.144 1.144 0 000-1.624l-.001-.018zM17.65 12l-5.06 4.79v-9.58L17.65 12z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">VS
-                    Code</span>
-                </div>
-                <!-- Antigravity -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#22D3EE]/40 hover:bg-[#22D3EE]/10 hover:shadow-[#22D3EE]/10"
-                  title="Antigravity">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#22D3EE]"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <circle cx="12" cy="10" r="4" />
-                    <path d="M12 2v4M12 14v8M17 10h5M2 10h5" />
-                    <path d="M9 3l3-3 3 3" />
-                    <ellipse cx="12" cy="15" rx="7" ry="2.5" stroke-dasharray="3 3" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Antigravity</span>
-                </div>
-                <!-- Claude -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#D97706]/40 hover:bg-[#D97706]/10 hover:shadow-[#D97706]/10"
-                  title="Claude">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#D97706]"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path
-                      d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                    <circle cx="9" cy="11" r="1" fill="currentColor" />
-                    <circle cx="15" cy="11" r="1" fill="currentColor" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Claude</span>
-                </div>
-              </div>
+            <!-- Main Heading (Clean, elegant, balanced scale) -->
+            <h1
+              class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+              Building purposeful web applications with <span
+                class="text-sky-700 dark:text-sky-400">clean code</span> &amp; intuitive design.
+            </h1>
 
-              <!-- Set 2 (Duplicated for infinite scroll) -->
-              <div class="skills-marquee-content flex gap-3.5 shrink-0 px-2" aria-hidden="true">
-                <!-- HTML5 -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#E34F26]/40 hover:bg-[#E34F26]/10 hover:shadow-[#E34F26]/10"
-                  title="HTML5">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#E34F26]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M1.5 0h21l-1.91 21.563L11.977 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718 10.059.003.23-2.622L5.412 4.41l.698 8.01h9.126l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.343 3.867L12 19.219l5.377-1.482.744-8.312H8.531z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">HTML5</span>
-                </div>
-                <!-- CSS3 -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#1572B6]/40 hover:bg-[#1572B6]/10 hover:shadow-[#1572B6]/10"
-                  title="CSS3">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#1572B6]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M1.5 0h21l-1.91 21.563L11.977 24l-8.565-2.438L1.5 0zm5.088 5.438l.383 4.312h8.04l-.227 2.562H6.968l.188 2.113h8.086l-.326 3.426-2.91.804-2.955-.81-.188-2.11H6.248l.343 3.867L12 19.219l5.377-1.482.88-9.844H7.203L6.82 5.438h10.978l.23-2.622H6.588z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">CSS3</span>
-                </div>
-                <!-- JavaScript -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F7DF1E]/40 hover:bg-[#F7DF1E]/10 hover:shadow-[#F7DF1E]/10"
-                  title="JavaScript">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F7DF1E]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.187 18.258c0 .878-.475 1.542-1.385 1.542-.71 0-1.173-.387-1.383-1.029h.45c.143.518.528.847 1 .847.674 0 .895-.417.895-1.066V10h.423v8.258zm2.463 1.384c-.815 0-1.385-.386-1.542-1.072h.437c.13.528.53.847 1.11.847.608 0 .976-.285.976-.814 0-.476-.328-.68-.97-.833l-.683-.162c-.854-.202-1.228-.609-1.228-1.295 0-.756.634-1.32 1.543-1.32.748 0 1.267.332 1.458.948h-.42c-.156-.447-.487-.714-1.033-.714-.555 0-.895.285-.895.748 0 .426.27.608.857.747l.683.163c.875.209 1.246.577 1.246 1.353 0 .783-.675 1.355-1.602 1.355z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">JavaScript</span>
-                </div>
-                <!-- React -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#61DAFB]/40 hover:bg-[#61DAFB]/10 hover:shadow-[#61DAFB]/10"
-                  title="React">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#61DAFB]"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(0 12 12)" />
-                    <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(60 12 12)" />
-                    <ellipse cx="12" cy="12" rx="11" ry="4.2" transform="rotate(120 12 12)" />
-                    <circle cx="12" cy="12" r="2" fill="currentColor" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">React</span>
-                </div>
-                <!-- Tailwind CSS -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#06B6D4]/40 hover:bg-[#06B6D4]/10 hover:shadow-[#06B6D4]/10"
-                  title="Tailwind CSS">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#06B6D4]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 14.881 12 18 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 15.121 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.392 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 9.121 12 6.001 12z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Tailwind
-                    CSS</span>
-                </div>
-                <!-- Bootstrap -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#7952B3]/40 hover:bg-[#7952B3]/10 hover:shadow-[#7952B3]/10"
-                  title="Bootstrap">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#7952B3]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12zm-15.69-5.114c0-.495.397-.872.937-.872h4.593c1.472 0 2.338.72 2.338 1.776 0 .809-.569 1.407-1.428 1.636v.077c1.077.195 1.782.887 1.782 1.956 0 1.217-.999 1.996-2.632 1.996h-5.59a.933.933 0 01-.937-.937v-5.633zm2.534.887v1.89h1.936c.795 0 1.23-.332 1.23-.938 0-.573-.427-.952-1.23-.952h-1.936zm0 3.232v2.138h2.155c.896 0 1.373-.376 1.373-1.047 0-.693-.477-1.091-1.373-1.091h-2.155z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Bootstrap</span>
-                </div>
-                <!-- Node.js -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#339933]/40 hover:bg-[#339933]/10 hover:shadow-[#339933]/10"
-                  title="Node.js">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#339933]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 2L2 7.75v11.5L12 22l10-5.75V7.75L12 2zm-1.25 15.28c-1.63-.2-2.73-1.4-2.8-3.08h1.86c.07.72.63 1.35 1.5 1.46.94.12 1.7-.35 1.84-1.18.23-1.36-1.07-1.67-2.16-1.92-1.74-.4-3.5-.83-3.1-3.23.27-1.64 1.76-2.58 3.32-2.43 1.4.14 2.3 1.07 2.44 2.38h-1.85c-.07-.57-.5-.98-1.18-1.03-.68-.05-1.2.22-1.27.76-.1 1.08.83 1.33 1.8 1.54 1.7.38 3.65.82 3.33 3.25-.26 2.02-1.9 2.68-3.9 2.5z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Node.js</span>
-                </div>
-                <!-- Java -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#EA2D2E]/40 hover:bg-[#EA2D2E]/10 hover:shadow-[#EA2D2E]/10"
-                  title="Java">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#EA2D2E]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M19.467 15.694s-1.808.625-3.805.111c-2.43-.625-4.832-2.611-7.234-2.611-2.43 0-3.32.903-3.32.903S7.09 13 8.791 13c1.7 0 3.395.778 5.797 1.389 2.326.597 4.879.167 4.879.167v1.138zM21 18s-2.5 1.5-6.5.75c-4.5-.844-7.5-3.75-12-3.75-3 0-2.5 1.5-2.5 1.5s2.5.75 4.5.75c4.5 0 7.5 3 12 3.75 3.5.583 4.5-3 4.5-3zm-11.83-9.4c-.1-.13-.23-.25-.37-.37.28-.35.61-.66.97-.93-.33-.06-.66-.1-.99-.13.3-.13.62-.24.96-.34-.73-.24-1.52-.39-2.31-.46.36-.21.75-.4 1.15-.55C8.01 5.37 7.02 5.2 6.01 5.17c1 .36 1.93.84 2.75 1.42-.51.04-1.01.12-1.5.24.87.5 1.63 1.12 2.27 1.83-.8-.08-1.59-.1-2.36-.06.74.65 1.36 1.43 1.82 2.3-.92-.25-1.84-.42-2.75-.5 1.05 1.03 1.83 2.29 2.27 3.69-.9-.55-1.87-1.01-2.88-1.37.95 1.5 1.58 3.19 1.82 4.96-.92-.83-1.95-1.54-3.04-2.11 1.04 2.2 1.45 4.6 1.17 7-.55-1.1-1.22-2.12-1.99-3.03.36 2.3.06 4.63-.9 6.8 1.44-2 2.45-4.32 2.91-6.8 0 0 .5 2.5-1.5 4.5v.5s2.5-1.5 2.5-5.5c.01-2.34-.35-4.66-1.06-6.89.87.57 1.66 1.25 2.34 2.02-.32-1.78-.99-3.46-1.98-4.94.9.23 1.76.57 2.55 1.02-.07-1.33-.49-2.61-1.23-3.72.77.06 1.52.22 2.24.47-.32-1.03-.89-1.97-1.66-2.76 1.13-.1 2.23.09 3.26.57z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Java</span>
-                </div>
-                <!-- PHP -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#777BB4]/40 hover:bg-[#777BB4]/10 hover:shadow-[#777BB4]/10"
-                  title="PHP">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#777BB4]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zM7.5 16.5H5.8l1-4.7H5l.3-1.4h1.8l.6-2.9h1.7l-.6 2.9h1.6l.6-2.9H12l-.6 2.9h1.7L12.5 15h-1.7l.6-2.8H9.8l-.6 2.8H7.5zm7.3 0h-1.7l1.1-5h-1.6l-.3 1.4h-1.7l.6-2.9h4.3l.5-2h1.7l-.5 2h2.2l-.3 1.4h-2.2l-.8 3.6c-.2.9.3 1.5 1.2 1.5h.7l-.3 1.4c-.4.1-.9.1-1.4.1-1.9 0-3-1.1-2.6-3.2l.6-2.8h-1.6l-1 4.7z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">PHP</span>
-                </div>
-                <!-- MySQL -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#4479A1]/40 hover:bg-[#4479A1]/10 hover:shadow-[#4479A1]/10"
-                  title="MySQL">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#4479A1]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 18.5c-4.142 0-7.5-1.567-7.5-3.5s3.358-3.5 7.5-3.5 7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5zm0-4.5c-4.142 0-7.5-1.567-7.5-3.5s3.358-3.5 7.5-3.5 7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5zm0-4.5c-4.142 0-7.5-1.567-7.5-3.5S7.858 3 12 3s7.5 1.567 7.5 3.5-3.358 3.5-7.5 3.5z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">MySQL</span>
-                </div>
-                <!-- Git -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F05032]/40 hover:bg-[#F05032]/10 hover:shadow-[#F05032]/10"
-                  title="Git">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F05032]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M23.546 10.93L13.07.45c-.607-.607-1.587-.607-2.194 0L8.8 2.52l3.353 3.353c.732-.248 1.57-.087 2.155.498.586.586.747 1.425.498 2.156l3.353 3.353c.73-.248 1.57-.087 2.156.498.775.776.775 2.033 0 2.808-.775.775-2.033.775-2.808 0-.583-.583-.746-1.417-.502-2.147L14.65 9.682c-.243.242-.564.368-.89.368-.236 0-.474-.065-.688-.198l-2.97 2.97c.133.214.198.452.198.688 0 .326-.126.647-.368.89-.775.775-2.033.775-2.808 0-.775-.775-.775-2.033 0-2.808.243-.243.564-.368.89-.368.236 0 .474.065.688.198l2.97-2.97c-.133-.214-.198-.452-.198-.688 0-.326.126-.647.368-.89.585-.585 1.423-.746 2.155-.5l3.353-3.353L1.57 9.833c-.607.607-.607 1.587 0 2.194L12.046 22.5c.607.608 1.587.608 2.194 0l9.306-9.375c.607-.607.607-1.587 0-2.194z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Git</span>
-                </div>
-                <!-- GitHub -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10 hover:shadow-white/10"
-                  title="GitHub">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-white"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.53 1.03 1.53 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.137 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">GitHub</span>
-                </div>
-                <!-- Figma -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#F24E1E]/40 hover:bg-[#F24E1E]/10 hover:shadow-[#F24E1E]/10"
-                  title="Figma">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#F24E1E]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M8.5 19c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5v-3.5h-7V19zm0-7c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5V8.5h-7V12zm0-7c0 1.933 1.567 3.5 3.5 3.5s3.5-1.567 3.5-3.5V1.5h-7V5zm7 3.5c1.933 0 3.5-1.567 3.5-3.5S17.433 1.5 15.5 1.5H12v7h3.5zm0 7c1.933 0 3.5-1.567 3.5-3.5s-1.567-3.5-3.5-3.5H12v7h3.5z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Figma</span>
-                </div>
-                <!-- Visual Studio Code -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#007ACC]/40 hover:bg-[#007ACC]/10 hover:shadow-[#007ACC]/10"
-                  title="VS Code">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#007ACC]"
-                    viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M23.986 6.568l-3.08-2.923c-.189-.18-.492-.18-.68 0L12.59 10.74 4.542 3.123c-.189-.18-.492-.18-.68 0L.373 6.416a1.144 1.144 0 000 1.624L7.543 12 .373 15.96a1.144 1.144 0 000 1.624l3.489 3.293c.189.18.492.18.68 0l8.048-7.617 7.636 7.095c.189.18.492.18.68 0l3.08-2.923a1.144 1.144 0 000-1.624L16.273 12l7.713-7.29a1.144 1.144 0 000-1.624l-.001-.018zM17.65 12l-5.06 4.79v-9.58L17.65 12z" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">VS
-                    Code</span>
-                </div>
-                <!-- Antigravity -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#22D3EE]/40 hover:bg-[#22D3EE]/10 hover:shadow-[#22D3EE]/10"
-                  title="Antigravity">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#22D3EE]"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <circle cx="12" cy="10" r="4" />
-                    <path d="M12 2v4M12 14v8M17 10h5M2 10h5" />
-                    <path d="M9 3l3-3 3 3" />
-                    <ellipse cx="12" cy="15" rx="7" ry="2.5" stroke-dasharray="3 3" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Antigravity</span>
-                </div>
-                <!-- Claude -->
-                <div
-                  class="group relative flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-[#D97706]/40 hover:bg-[#D97706]/10 hover:shadow-[#D97706]/10"
-                  title="Claude">
-                  <svg class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-[#D97706]"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path
-                      d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-                    <circle cx="9" cy="11" r="1" fill="currentColor" />
-                    <circle cx="15" cy="11" r="1" fill="currentColor" />
-                  </svg>
-                  <span
-                    class="absolute -top-10 scale-0 rounded-lg bg-slate-900 border border-white/10 px-2.5 py-1 text-xs font-semibold text-white shadow-xl transition-all duration-200 group-hover:scale-100 whitespace-nowrap z-20 pointer-events-none">Claude</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="section-stage section-services px-6 py-16 lg:px-8 lg:py-24">
-      <div class="section-inner mx-auto max-w-7xl">
-        <div class="section-header mx-auto max-w-3xl text-center reveal">
-          <p class="section-kicker mb-3 justify-center text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
-            Services
-          </p>
-          <h2 class="font-display text-4xl font-bold text-white sm:text-5xl">
-            Everything is styled to feel polished and dimensional.
-          </h2>
-          <p class="mt-4 text-base leading-8 text-slate-300">
-            A focused set of services designed to help brands look sharper,
-            move smoother, and convert better.
-          </p>
-        </div>
-        <div class="services-grid mt-12 grid gap-6 lg:grid-cols-3">
-          <div
-            class="service-card service-card--brand group reveal reveal-delay-1 rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl transition duration-300 hover:border-cyan-300/30 hover:bg-white/10">
-            <div
-              class="service-icon mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-300/15 text-2xl shadow-glow">
-              💡
-            </div>
-            <h3 class="font-display text-2xl font-bold text-white">
-              Software Engineering
-            </h3>
-            <p class="mt-3 leading-7 text-slate-300">
-              Transforming ideas into functional applications through
-              problem-solving, programming, and continuous learning.
+            <!-- Introduction -->
+            <p class="mt-4 text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-300">
+              Hi, I'm <strong class="text-slate-900 dark:text-white font-bold">Kim Arvin Pinili</strong>, an aspiring
+              web developer and
+              graduating Computer Science student. I specialize in building responsive, efficient, and user-centered
+              web
+              applications with modern technologies like React, PHP, and MySQL.
             </p>
-          </div>
-          <div
-            class="service-card service-card--dev group reveal reveal-delay-2 rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl transition duration-300 hover:border-cyan-300/30 hover:bg-white/10">
-            <div
-              class="service-icon mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-fuchsia-400/15 text-2xl shadow-[0_24px_80px_rgba(232,121,249,0.15)]">
-              💻
+
+            <!-- Action Buttons -->
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              <a href="#projects" class="btn-primary">
+                <span>View Featured Projects</span>
+                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </a>
+              <a href="#contact" class="btn-secondary">
+                <span>Contact Me</span>
+              </a>
             </div>
-            <h3 class="font-display text-2xl font-bold text-white">
-              Web Development
-            </h3>
-            <p class="mt-3 leading-7 text-slate-300">
-              Modern, performant, accessible websites and apps that look great
-              on every device.
-            </p>
-          </div>
-          <div
-            class="service-card service-card--design group reveal reveal-delay-3 rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-[0_20px_70px_rgba(2,6,23,0.45)] backdrop-blur-xl transition duration-300 hover:border-cyan-300/30 hover:bg-white/10">
-            <div
-              class="service-icon mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-300/15 text-2xl shadow-neon">
-              🎨
+
+            <!-- Email One-Click Copy Strip -->
+            <div class="mt-6 flex flex-wrap items-center gap-2.5 text-xs text-slate-600 dark:text-slate-400">
+              <span class="font-semibold text-slate-800 dark:text-slate-200">Direct Email:</span>
+              <button id="copy-email-btn"
+                class="inline-flex items-center gap-2 rounded-lg border border-slate-300 dark:border-white/10 bg-white dark:bg-white/5 px-2.5 py-1 text-xs text-slate-800 dark:text-slate-200 font-medium transition-colors hover:border-sky-500 dark:hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-white/10 shadow-2xs"
+                title="Copy email to clipboard">
+                <svg class="h-3.5 w-3.5 text-sky-700 dark:text-sky-400" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+                <span class="font-mono text-[11px] font-semibold text-slate-900 dark:text-white">kimarvinchosen@gmail.com</span>
+              </button>
+              <span id="copy-feedback"
+                class="text-slate-600 dark:text-slate-400 text-[11px] font-medium transition-colors">Click to copy
+                email</span>
             </div>
-            <h3 class="font-display text-2xl font-bold text-white">
-              Creative Design
-            </h3>
-            <p class="mt-3 leading-7 text-slate-300">
-              UI/UX design, prototyping, and micro-interactions with a focus
-              on usability.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <section id="portfolio" class="section-stage section-portfolio px-6 py-16 lg:px-8 lg:py-24">
-      <div class="section-inner mx-auto max-w-7xl">
-        <div class="section-header mx-auto max-w-3xl text-center reveal">
-          <p class="section-kicker mb-3 justify-center text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
-            Portfolio
-          </p>
-          <h2 class="font-display text-4xl font-bold text-white sm:text-5xl">
-            Academic Scheduler System — Full-Stack Web Application
-          </h2>
-          <p class="mt-4 text-base leading-8 text-slate-300">
-            Built with React, PHP, and MySQL — this scheduling system handles real data, real conflicts, and real users.
-            Every module was designed with UX, performance, and maintainability in mind.
-
-          </p>
-        </div>
-        <div class="portfolio-grid mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-
-          <!-- Dashboard Command Center -->
-          <div
-            class="portfolio-card group reveal rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
-            <!-- Browser frame mockup -->
-            <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
-              <!-- Browser dot header -->
-              <div class="mb-2 flex items-center gap-1.5 px-2">
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
-                <div
-                  class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
-                  http://localhost:5173/admin/dashboard
-                </div>
+            <!-- Key Metrics Strip -->
+            <div class="mt-8 grid grid-cols-3 gap-3 border-t border-slate-200 dark:border-white/10 pt-6">
+              <div>
+                <div class="text-xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-2xl">2026</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400 font-semibold mt-0.5">
+                  CS Graduation</div>
               </div>
-              <img
-                class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                src="images/media__1781340880330.png" alt="Chairperson Dashboard" />
-            </div>
-            <!-- Content -->
-            <div class="mt-5">
-              <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                Chairperson Dashboard</h3>
-              <p class="mt-2 text-sm text-slate-400 leading-relaxed">A centralized dashboard that provides
-                administrators with real-time statistics, schedule monitoring, and conflict alerts to support faster
-                academic planning decisions.</p>
-
-              <!-- Workflow collapsible section -->
-              <div class="mt-4 border-t border-white/5 pt-4">
-                <button
-                  class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors"
-                  data-target="flow-dashboard">
-                  <span>VIEW PROCESS WORKFLOW</span>
-                  <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-
-                <div id="flow-dashboard"
-                  class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                  <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Processing:</strong>
-                      <p class="mt-1 text-slate-400">Retrieves instructor, room, subject, and schedule data through API
-                        requests connected to the database.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">2. Business Logic:</strong>
-                      <p class="mt-1 text-slate-400">Processes scheduling information and identifies conflicts,
-                        unavailable resources, and possible scheduling issues..</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">3. User Interface:</strong>
-                      <p class="mt-1 text-slate-400">Displays summarized information through interactive dashboard cards
-                        and real-time reports.</p>
-                    </div>
-                  </div>
-                </div>
+              <div>
+                <div class="text-xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-2xl">5+</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400 font-semibold mt-0.5">
+                  Core Modules</div>
+              </div>
+              <div>
+                <div class="text-xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-2xl">10+</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 dark:text-slate-400 font-semibold mt-0.5">
+                  Tech Skills</div>
               </div>
             </div>
           </div>
 
-          <!-- Instructor Manager -->
-          <div
-            class="portfolio-card group reveal reveal-delay-1 rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
-            <!-- Browser frame mockup -->
-            <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
-              <!-- Browser dot header -->
-              <div class="mb-2 flex items-center gap-1.5 px-2">
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
-                <div
-                  class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
-                  http://localhost:5173/admin/instructors
-                </div>
-              </div>
-              <img
-                class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                src="images/media__1781340880185.png" alt="Instructor Management" />
-            </div>
-            <!-- Content -->
-            <div class="mt-5">
-              <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                Instructor Profile Registry</h3>
-              <p class="mt-2 text-sm text-slate-400 leading-relaxed">A faculty management module that stores instructor
-                profiles, qualifications, teaching preferences, and availability to support accurate schedule
-                generation.</p>
+          <!-- Hero Visual Portrait (5 cols on lg) -->
+          <div class="lg:col-span-5 reveal reveal-delay-1">
+            <div class="relative mx-auto max-w-xs sm:max-w-sm lg:max-w-none">
+              <!-- Framed Portrait Card -->
+              <div class="glass-panel relative rounded-2xl p-2.5 shadow-md transition-all duration-200">
+                <div class="relative overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/10">
+                  <img src="images/me.png" alt="Kim Arvin Pinili"
+                    class="h-[22rem] w-full object-cover object-center sm:h-[26rem] lg:h-[28rem]" />
+                  <div
+                    class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
 
-              <!-- Workflow collapsible section -->
-              <div class="mt-4 border-t border-white/5 pt-4">
-                <button
-                  class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors"
-                  data-target="flow-instructors">
-                  <span>VIEW PROCESS WORKFLOW</span>
-                  <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-
-                <div id="flow-instructors"
-                  class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                  <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Input:</strong>
-                      <p class="mt-1 text-slate-400">Administrators enter instructor information, academic credentials,
-                        and availability preferences through structured forms.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">2. Validation Logic:</strong>
-                      <p class="mt-1 text-slate-400">The system validates submitted information and updates instructor
-                        records while maintaining database consistency.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">3. Dynamic Rendering:</strong>
-                      <p class="mt-1 text-slate-400">Displays updated faculty records with search, filtering, and
-                        management actions.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Faculty Grid Schedule Planner -->
-          <div
-            class="portfolio-card group reveal reveal-delay-2 rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
-            <!-- Browser frame mockup -->
-            <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
-              <!-- Browser dot header -->
-              <div class="mb-2 flex items-center gap-1.5 px-2">
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
-                <div
-                  class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
-                  http://localhost:5173/admin/instructor-schedule
-                </div>
-              </div>
-              <img
-                class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                src="images/media__1781340880083.png" alt="Faculty Class Schedule" />
-            </div>
-            <!-- Content -->
-            <div class="mt-5">
-              <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Faculty
-                Grid Schedule</h3>
-              <p class="mt-2 text-sm text-slate-400 leading-relaxed">A scheduling interface that visualizes instructor
-                assignments, classroom allocation, and weekly workload distribution while preventing timetable
-                conflicts.</p>
-
-              <!-- Workflow collapsible section -->
-              <div class="mt-4 border-t border-white/5 pt-4">
-                <button
-                  class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors"
-                  data-target="flow-faculty">
-                  <span>VIEW PROCESS WORKFLOW</span>
-                  <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-
-                <div id="flow-faculty"
-                  class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                  <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">1. Schedule Retrieval:</strong>
-                      <p class="mt-1 text-slate-400">Fetches assigned schedules based on instructor, subject, classroom,
-                        and time-slot relationships.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">2. Conflict Checking:</strong>
-                      <p class="mt-1 text-slate-400">Evaluates overlapping schedules and workload restrictions before
-                        displaying assignments.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">3. Schedule
-                        Visualization:</strong>
-                      <p class="mt-1 text-slate-400">Presents organized timetable grids for easier monitoring and
-                        academic planning.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Student Schedule Timetable Modal -->
-          <div
-            class="portfolio-card group reveal reveal-delay-1 rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
-            <!-- Browser frame mockup -->
-            <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
-              <!-- Browser dot header -->
-              <div class="mb-2 flex items-center gap-1.5 px-2">
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
-                <div
-                  class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
-                  http://localhost:5173/admin/class-schedules
-                </div>
-              </div>
-              <img
-                class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                src="images/media__1781340880220.png" alt="Student Class Schedule" />
-            </div>
-            <!-- Content -->
-            <div class="mt-5">
-              <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Student
-                Class Schedule Viewer</h3>
-              <p class="mt-2 text-sm text-slate-400 leading-relaxed">A schedule visualization module that allows
-                administrators to view student section timetables, assigned instructors, and classroom allocations in an
-                organized weekly layout.</p>
-
-              <!-- Workflow collapsible section -->
-              <div class="mt-4 border-t border-white/5 pt-4">
-                <button
-                  class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors"
-                  data-target="flow-student">
-                  <span>VIEW PROCESS WORKFLOW</span>
-                  <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-
-                <div id="flow-student"
-                  class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                  <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Retrieval:</strong>
-                      <p class="mt-1 text-slate-400">Selecting a student section triggers an API request to retrieve
-                        related subjects, instructors, classrooms, and assigned time slots.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">2. Business Logic:</strong>
-                      <p class="mt-1 text-slate-400">Validates schedule relationships to ensure courses, sections, and
-                        assigned resources are properly connected without conflicts.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">3. User Interface:</strong>
-                      <p class="mt-1 text-slate-400">Displays the complete weekly schedule through an interactive modal
-                        with print-ready formatting for easier distribution.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Room Schedule Modal -->
-          <div
-            class="portfolio-card group reveal reveal-delay-2 rounded-[2rem] border border-white/10 bg-slate-900/60 p-5 shadow-[0_24px_80px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:border-cyan-300/30 hover:bg-slate-900/80">
-            <!-- Browser frame mockup -->
-            <div class="overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/40 p-2 shadow-inner">
-              <!-- Browser dot header -->
-              <div class="mb-2 flex items-center gap-1.5 px-2">
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FF5F56]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
-                <span class="h-2.5 w-2.5 rounded-full bg-[#27C93F]"></span>
-                <div
-                  class="ml-4 flex-1 rounded-md bg-white/5 px-3 py-0.5 text-[10px] text-slate-400 select-none overflow-hidden text-ellipsis whitespace-nowrap">
-                  http://localhost:5173/admin/rooms
-                </div>
-              </div>
-              <img
-                class="h-48 w-full rounded-lg object-cover object-top transition duration-500 group-hover:scale-[1.02]"
-                src="images/media__1781340880285.png" alt="Room Utilization Schedule" />
-            </div>
-            <!-- Content -->
-            <div class="mt-5">
-              <h3 class="font-display text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">Room
-                Schedule Management</h3>
-              <p class="mt-2 text-sm text-slate-400 leading-relaxed">A facility management interface that displays room
-                availability, assigned classes, and scheduled activities while helping administrators optimize classroom
-                usage.</p>
-
-              <!-- Workflow collapsible section -->
-              <div class="mt-4 border-t border-white/5 pt-4">
-                <button
-                  class="workflow-toggle flex items-center justify-between w-full text-xs font-semibold text-cyan-300 hover:text-cyan-200 transition-colors"
-                  data-target="flow-room">
-                  <span>VIEW PROCESS WORKFLOW</span>
-                  <svg class="h-4 w-4 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-
-                <div id="flow-room"
-                  class="workflow-details max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                  <div class="mt-3 space-y-3 text-xs text-slate-300 bg-white/5 rounded-xl p-3 border border-white/5">
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">1. Data Retrieval:</strong>
-                      <p class="mt-1 text-slate-400">Fetches room assignments and schedule records based on selected
-                        classroom information from the database.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">2. Business Logic:</strong>
-                      <p class="mt-1 text-slate-400">Checks room availability, detects duplicate assignments, and
-                        validates classroom scheduling constraints.</p>
-                    </div>
-                    <div>
-                      <strong class="text-white uppercase tracking-wider text-[10px]">3. User Interface:</strong>
-                      <p class="mt-1 text-slate-400">Generates an interactive room timetable with export and printing
-                        capabilities for administrative use.</p>
+                  <!-- Floating Badge at bottom of image -->
+                  <div
+                    class="absolute bottom-3 left-3 right-3 rounded-lg border border-white/30 dark:border-white/10 bg-white/95 dark:bg-[#0f1422]/95 p-2.5 backdrop-blur-md shadow-sm">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <div class="text-xs font-bold text-slate-900 dark:text-white">Kim Arvin Pinili</div>
+                        <div class="text-[11px] text-sky-800 dark:text-sky-400 font-semibold">Aspiring Web Developer</div>
+                      </div>
+                      <span
+                        class="rounded-full bg-slate-100 dark:bg-white/10 border border-slate-300 dark:border-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-700 dark:text-slate-300">
+                        Cavite, PH
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1022,117 +276,814 @@
       </div>
     </section>
 
-    <!-- <section
-        id="experience"
-        class="section-stage section-experience px-6 py-16 lg:px-8 lg:py-24">
-        <div class="section-inner mx-auto max-w-7xl">
-          <div class="section-header mx-auto max-w-3xl text-center reveal">
-            <p
-              class="section-kicker mb-3 justify-center text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
-              PROJECT EXPERIENCE
-            </p>
-            <h2 class="font-display text-4xl font-bold text-white sm:text-5xl">
-              A timeline with the same layered visual language.
+    <!-- ─── 2. ABOUT ME SECTION ─── -->
+    <section id="about" class="section-divider relative px-5 py-16 lg:px-8">
+      <div class="mx-auto max-w-5xl">
+        <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
+
+          <!-- About Visual (5 cols) -->
+          <div class="lg:col-span-5 reveal">
+            <div class="relative mx-auto max-w-xs sm:max-w-sm lg:max-w-none">
+              <div class="glass-panel relative rounded-2xl p-2.5 shadow-sm">
+                <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-white/10">
+                  <img src="images/4.jpg" alt="Kim Arvin Pinili - About"
+                    class="h-80 w-full object-cover object-[center_60%] sm:h-96" />
+                </div>
+                <!-- Location & Role Pill -->
+                <div
+                  class="mt-2.5 flex items-center justify-between px-1 text-xs text-slate-700 dark:text-slate-300 font-medium">
+                  <span class="flex items-center gap-1.5 font-semibold text-slate-800 dark:text-slate-200">
+                    <svg class="h-3.5 w-3.5 text-sky-700 dark:text-sky-400" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Cavite, Philippines
+                  </span>
+                  <span class="text-slate-700 dark:text-slate-300 font-semibold">B.S. Computer Science</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- About Narrative (7 cols) -->
+          <div class="lg:col-span-7 reveal reveal-delay-1">
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-400">About Me</span>
+            <h2
+              class="mt-1.5 text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+              Passionate about technology, clean architecture, and practical solutions.
             </h2>
+            <p class="mt-4 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+              I am a graduating Computer Science student focused on software engineering and full-stack web
+              development.
+              I take pride in translating complex requirements into organized, functional, and user-friendly digital
+              tools.
+            </p>
+            <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+              My hands-on experience includes developing full-stack web systems from database architecture to
+              responsive UI.
+              I treat every project as an opportunity to build software that is maintainable, scalable, and easy for
+              end-users to navigate.
+            </p>
+
+            <!-- 3 Core Engineering Pillars -->
+            <div class="mt-6 grid gap-3.5 sm:grid-cols-3">
+              <div class="glass-panel card-hover rounded-xl p-3.5">
+                <div class="text-lg">⚡</div>
+                <h3 class="mt-1 text-xs font-bold text-slate-900 dark:text-white">Clean Code</h3>
+                <p class="mt-0.5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Committed to modular structure, readability, and DRY principles.
+                </p>
+              </div>
+              <div class="glass-panel card-hover rounded-xl p-3.5">
+                <div class="text-lg">🎯</div>
+                <h3 class="mt-1 text-xs font-bold text-slate-900 dark:text-white">Problem Solving</h3>
+                <p class="mt-0.5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Focusing on the root cause to build durable, scalable solutions.
+                </p>
+              </div>
+              <div class="glass-panel card-hover rounded-xl p-3.5">
+                <div class="text-lg">🚀</div>
+                <h3 class="mt-1 text-xs font-bold text-slate-900 dark:text-white">Continuous Growth</h3>
+                <p class="mt-0.5 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  Always learning modern tools, frameworks, and engineering standards.
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="timeline-grid mt-12 grid gap-6 lg:grid-cols-3">
-            <div
-              class="timeline-item reveal reveal-delay-1 rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <span
-                class="timeline-year text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300"
-                >2025 - Present</span
-              >
-              <h3 class="mt-4 font-display text-2xl font-bold text-white">
-                Lead UI/UX Designer
-              </h3>
-              <p class="mt-3 leading-7 text-slate-300">
-                Led cross-functional teams delivering end-to-end product design
-                from discovery to launch.
-              </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 3. SKILLS & TECH STACK SECTION ─── -->
+    <section id="skills" class="section-divider relative px-5 py-16 lg:px-8">
+      <div class="mx-auto max-w-5xl">
+        <div class="text-center max-w-xl mx-auto reveal">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-400">Tech Stack &amp;
+            Tools</span>
+          <h2 class="mt-1.5 text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Technologies I work with
+          </h2>
+          <p class="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">
+            A comprehensive overview of the programming languages, frameworks, databases, and tools in my development
+            workflow.
+          </p>
+        </div>
+
+        <!-- Categorized Skills Grid -->
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 reveal reveal-delay-1">
+
+          <!-- Category 1: Frontend -->
+          <div class="glass-panel card-hover rounded-xl p-4">
+            <div class="flex items-center gap-2 text-sky-800 dark:text-sky-400 mb-3">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+              <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Frontend</h3>
             </div>
-            <div
-              class="timeline-item reveal reveal-delay-2 rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <span
-                class="timeline-year text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300"
-                >2020 — 2022</span
-              >
-              <h3 class="mt-4 font-display text-2xl font-bold text-white">
-                Product Designer
+            <ul class="space-y-1.5 text-xs text-slate-800 dark:text-slate-200 font-medium">
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-sky-600 dark:bg-sky-400"></span>
+                <span>React</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-sky-600 dark:bg-sky-400"></span>
+                <span>JavaScript (ES6+)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-sky-600 dark:bg-sky-400"></span>
+                <span>Tailwind CSS</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-sky-600 dark:bg-sky-400"></span>
+                <span>HTML5 &amp; CSS3</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-sky-600 dark:bg-sky-400"></span>
+                <span>Bootstrap</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 2: Backend & Database -->
+          <div class="glass-panel card-hover rounded-xl p-4">
+            <div class="flex items-center gap-2 text-teal-800 dark:text-teal-400 mb-3">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7c0-2-1.5-3-3.5-3h-9C5.5 4 4 5 4 7zm0 5h16" />
+              </svg>
+              <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Backend &amp; DB
               </h3>
-              <p class="mt-3 leading-7 text-slate-300">
-                Shipped data-driven features, improved onboarding, and increased
-                activation across web and mobile.
-              </p>
             </div>
-            <div
-              class="timeline-item reveal reveal-delay-3 rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-              <span
-                class="timeline-year text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300"
-                >2018 — 2020</span
-              >
-              <h3 class="mt-4 font-display text-2xl font-bold text-white">
-                Web Developer
+            <ul class="space-y-1.5 text-xs text-slate-800 dark:text-slate-200 font-medium">
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-teal-600 dark:bg-teal-400"></span>
+                <span>PHP</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-teal-600 dark:bg-teal-400"></span>
+                <span>MySQL</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-teal-600 dark:bg-teal-400"></span>
+                <span>Node.js</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-teal-600 dark:bg-teal-400"></span>
+                <span>Java</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-teal-600 dark:bg-teal-400"></span>
+                <span>RESTful APIs</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Tools & Version Control -->
+          <div class="glass-panel card-hover rounded-xl p-4">
+            <div class="flex items-center gap-2 text-amber-800 dark:text-amber-400 mb-3">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Dev Tools</h3>
+            </div>
+            <ul class="space-y-1.5 text-xs text-slate-800 dark:text-slate-200 font-medium">
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-400"></span>
+                <span>Git &amp; GitHub</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-400"></span>
+                <span>Visual Studio Code</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-400"></span>
+                <span>Figma (UI/UX)</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-amber-600 dark:bg-amber-400"></span>
+                <span>Responsive Design</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 4: AI & Modern Workflow -->
+          <div class="glass-panel card-hover rounded-xl p-4">
+            <div class="flex items-center gap-2 text-purple-800 dark:text-purple-400 mb-3">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <h3 class="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Workflow &amp; AI
               </h3>
-              <p class="mt-3 leading-7 text-slate-300">
-                Built responsive frontends and accessible components focused on
-                performance and reliability.
-              </p>
             </div>
+            <ul class="space-y-1.5 text-xs text-slate-800 dark:text-slate-200 font-medium">
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-purple-600 dark:bg-purple-400"></span>
+                <span>Antigravity</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-purple-600 dark:bg-purple-400"></span>
+                <span>Claude</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-purple-600 dark:bg-purple-400"></span>
+                <span>Prompt Engineering</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="h-1.5 w-1.5 rounded-full bg-purple-600 dark:bg-purple-400"></span>
+                <span>Agile Principles</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Contained Skills Ticker Marquee -->
+        <div class="mt-10 skills-marquee py-3 border-y border-slate-300 dark:border-white/10">
+          <div
+            class="skills-marquee-track flex gap-8 items-center text-slate-700 dark:text-slate-300 text-xs font-semibold">
+            <!-- Set 1 -->
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>⚛️</span>
+              React</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>🐘</span>
+              PHP</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>🗄️</span>
+              MySQL</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>🎨</span>
+              Tailwind CSS</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>⚡</span>
+              JavaScript (ES6+)</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>🌐</span>
+              HTML5 / CSS3</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>☕</span>
+              Java</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>🟢</span>
+              Node.js</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>🐙</span>
+              Git &amp; GitHub</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>📐</span>
+              Figma</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"><span>💻</span>
+              VS Code</span>
+
+            <!-- Set 2 (for seamless loop) -->
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>⚛️</span> React</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>🐘</span> PHP</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>🗄️</span> MySQL</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>🎨</span> Tailwind CSS</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>⚡</span> JavaScript (ES6+)</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>🌐</span> HTML5 / CSS3</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>☕</span> Java</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>🟢</span> Node.js</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>🐙</span> Git &amp; GitHub</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>📐</span> Figma</span>
+            <span class="flex items-center gap-1.5 hover:text-slate-950 dark:hover:text-white transition-colors"
+              aria-hidden="true"><span>💻</span> VS Code</span>
           </div>
         </div>
-      </section> -->
 
-    <section id="contact" class="section-stage section-contact px-6 py-16 lg:px-8 lg:py-24">
-      <div class="section-inner mx-auto max-w-7xl">
-        <div class="contact-deck reveal">
-          <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+      </div>
+    </section>
 
-            <div class="contact-info-panel">
-              <p class="section-kicker mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">
-                Contact
+    <!-- ─── 4. FEATURED PROJECT (PORTFOLIO) ─── -->
+    <section id="projects" class="section-divider relative px-5 py-16 lg:px-8">
+      <div class="mx-auto max-w-5xl">
+
+        <!-- Project Header -->
+        <div class="max-w-2xl reveal">
+          <span class="badge-pill mb-2.5">Featured Full-Stack Project</span>
+          <h2
+            class="text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+            Academic Scheduler System
+          </h2>
+          <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+            A comprehensive web-based university scheduling platform engineered to eliminate scheduling conflicts
+            across faculty, student blocks, classrooms, and academic subjects. Built using <strong
+              class="text-slate-900 dark:text-white font-bold">React, PHP, and MySQL</strong> with a focus on real-time
+            data integrity and intuitive UX.
+          </p>
+
+          <!-- Tech Badges -->
+          <div class="mt-3.5 flex flex-wrap gap-1.5 text-xs">
+            <span
+              class="rounded-md bg-sky-50 dark:bg-sky-950/50 border border-sky-300 dark:border-sky-500/30 px-2.5 py-0.5 font-bold text-sky-800 dark:text-sky-300">React</span>
+            <span
+              class="rounded-md bg-teal-50 dark:bg-teal-950/50 border border-teal-300 dark:border-teal-500/30 px-2.5 py-0.5 font-bold text-teal-800 dark:text-teal-300">PHP
+              Backend</span>
+            <span
+              class="rounded-md bg-amber-50 dark:bg-amber-950/50 border border-amber-300 dark:border-amber-500/30 px-2.5 py-0.5 font-bold text-amber-900 dark:text-amber-300">MySQL
+              Database</span>
+            <span
+              class="rounded-md bg-purple-50 dark:bg-purple-950/50 border border-purple-300 dark:border-purple-500/30 px-2.5 py-0.5 font-bold text-purple-900 dark:text-purple-300">RESTful
+              Architecture</span>
+            <span
+              class="rounded-md bg-slate-100 dark:bg-white/5 border border-slate-300 dark:border-white/10 px-2.5 py-0.5 font-bold text-slate-800 dark:text-slate-300">Conflict
+              Detection Engine</span>
+          </div>
+        </div>
+
+        <!-- Project Modules Grid -->
+        <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <!-- Module 1: Chairperson Dashboard -->
+          <div class="glass-panel card-hover rounded-xl p-4 flex flex-col justify-between reveal">
+            <div>
+              <!-- Browser Mockup Window -->
+              <div class="browser-window">
+                <div class="browser-header">
+                  <span class="browser-dot browser-dot-close"></span>
+                  <span class="browser-dot browser-dot-min"></span>
+                  <span class="browser-dot browser-dot-max"></span>
+                  <div class="browser-address">localhost:5173/admin/dashboard</div>
+                </div>
+                <div class="overflow-hidden">
+                  <img src="images/media__1781340880330.png" alt="Chairperson Dashboard"
+                    class="h-40 w-full object-cover object-top transition duration-200 hover:scale-[1.02]" />
+                </div>
+              </div>
+
+              <!-- Module Description -->
+              <h3 class="mt-4 text-sm font-bold text-slate-900 dark:text-white">Chairperson Dashboard</h3>
+              <p class="mt-1.5 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                Central administrative hub presenting real-time system metrics, active timetable health, and automated
+                conflict indicators for rapid decision-making.
               </p>
-              <h2 class="font-display text-4xl font-bold text-white sm:text-5xl">
-                Let’s build something sharp, premium, and memorable.
-              </h2>
-              <div class="mt-8 space-y-4 rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
-                <p class="text-slate-300">
-                  <strong class="text-white">Phone:</strong> +63 9614239893
-                </p>
-                <p class="text-slate-300">
-                  <strong class="text-white">Email:</strong>
-                  kimarvinchosen@gmail.com
-                </p>
-                <p class="text-slate-300">
-                  <strong class="text-white">Location:</strong> Cavite,
-                  Philippines
-                </p>
+            </div>
 
-                <!-- Social Links -->
-                <div class="border-t border-white/10 pt-5 mt-5 flex flex-wrap gap-3">
-                  <!-- GitHub Badge -->
+            <!-- Workflow Collapsible -->
+            <div class="mt-4 border-t border-slate-200 dark:border-white/10 pt-3">
+              <button
+                class="workflow-toggle flex items-center justify-between w-full text-xs font-bold text-sky-700 dark:text-sky-400 hover:text-sky-900 dark:hover:text-sky-300 transition-colors"
+                data-target="flow-dashboard">
+                <span>VIEW ENGINEERING WORKFLOW</span>
+                <svg class="h-3.5 w-3.5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="flow-dashboard" class="workflow-details">
+                <div
+                  class="mt-2.5 space-y-2 text-xs text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 rounded-lg p-2.5 border border-slate-200 dark:border-white/10">
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">1. Data
+                      Ingestion:</strong>
+                    <p class="mt-0.5">Aggregates relational tables (instructors, rooms, subjects) via REST API
+                      endpoints.</p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">2. Business
+                      Logic:</strong>
+                    <p class="mt-0.5">Scans schedules for overlapping time slots, double bookings, and room
+                      over-capacity.</p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">3.
+                      Presentation:</strong>
+                    <p class="mt-0.5">Visualizes status counters and conflict alerts dynamically on dashboard cards.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 2: Instructor Registry -->
+          <div class="glass-panel card-hover rounded-xl p-4 flex flex-col justify-between reveal reveal-delay-1">
+            <div>
+              <div class="browser-window">
+                <div class="browser-header">
+                  <span class="browser-dot browser-dot-close"></span>
+                  <span class="browser-dot browser-dot-min"></span>
+                  <span class="browser-dot browser-dot-max"></span>
+                  <div class="browser-address">localhost:5173/admin/instructors</div>
+                </div>
+                <div class="overflow-hidden">
+                  <img src="images/media__1781340880185.png" alt="Instructor Profile Registry"
+                    class="h-40 w-full object-cover object-top transition duration-200 hover:scale-[1.02]" />
+                </div>
+              </div>
+
+              <h3 class="mt-4 text-sm font-bold text-slate-900 dark:text-white">Instructor Profile Registry</h3>
+              <p class="mt-1.5 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                Faculty profile and workload manager capturing academic qualifications, teaching preferences, and
+                weekly availability constraints.
+              </p>
+            </div>
+
+            <div class="mt-4 border-t border-slate-200 dark:border-white/10 pt-3">
+              <button
+                class="workflow-toggle flex items-center justify-between w-full text-xs font-bold text-sky-700 dark:text-sky-400 hover:text-sky-900 dark:hover:text-sky-300 transition-colors"
+                data-target="flow-instructors">
+                <span>VIEW ENGINEERING WORKFLOW</span>
+                <svg class="h-3.5 w-3.5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="flow-instructors" class="workflow-details">
+                <div
+                  class="mt-2.5 space-y-2 text-xs text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 rounded-lg p-2.5 border border-slate-200 dark:border-white/10">
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">1. Input
+                      &amp; Validation:</strong>
+                    <p class="mt-0.5">Captures faculty credentials and validates maximum teaching units per term.</p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">2.
+                      Persistence:</strong>
+                    <p class="mt-0.5">Synchronizes with MySQL with transactional integrity to prevent partial records.
+                    </p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">3. UI
+                      Display:</strong>
+                    <p class="mt-0.5">Features client-side filtering, search by department, and rapid profile editing.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 3: Faculty Grid Schedule -->
+          <div class="glass-panel card-hover rounded-xl p-4 flex flex-col justify-between reveal reveal-delay-2">
+            <div>
+              <div class="browser-window">
+                <div class="browser-header">
+                  <span class="browser-dot browser-dot-close"></span>
+                  <span class="browser-dot browser-dot-min"></span>
+                  <span class="browser-dot browser-dot-max"></span>
+                  <div class="browser-address">localhost:5173/admin/instructor-schedule</div>
+                </div>
+                <div class="overflow-hidden">
+                  <img src="images/media__1781340880083.png" alt="Faculty Grid Schedule"
+                    class="h-40 w-full object-cover object-top transition duration-200 hover:scale-[1.02]" />
+                </div>
+              </div>
+
+              <h3 class="mt-4 text-sm font-bold text-slate-900 dark:text-white">Faculty Grid Timetable</h3>
+              <p class="mt-1.5 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                Dynamic 2D scheduling matrix showing weekly class allocations by faculty member, verifying assigned
+                hours against curriculum requirements.
+              </p>
+            </div>
+
+            <div class="mt-4 border-t border-slate-200 dark:border-white/10 pt-3">
+              <button
+                class="workflow-toggle flex items-center justify-between w-full text-xs font-bold text-sky-700 dark:text-sky-400 hover:text-sky-900 dark:hover:text-sky-300 transition-colors"
+                data-target="flow-faculty">
+                <span>VIEW ENGINEERING WORKFLOW</span>
+                <svg class="h-3.5 w-3.5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="flow-faculty" class="workflow-details">
+                <div
+                  class="mt-2.5 space-y-2 text-xs text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 rounded-lg p-2.5 border border-slate-200 dark:border-white/10">
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">1. Timetable
+                      Fetch:</strong>
+                    <p class="mt-0.5">Loads section hours, assigned rooms, and instructor associations in single payload.
+                    </p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">2. Conflict
+                      Detection:</strong>
+                    <p class="mt-0.5">Highlights simultaneous slot conflicts and back-to-back room transitions.</p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">3. Visual
+                      Grid:</strong>
+                    <p class="mt-0.5">Renders high-clarity timetable blocks with color-coded subject indicators.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 4: Student Schedule Timetable -->
+          <div class="glass-panel card-hover rounded-xl p-4 flex flex-col justify-between reveal">
+            <div>
+              <div class="browser-window">
+                <div class="browser-header">
+                  <span class="browser-dot browser-dot-close"></span>
+                  <span class="browser-dot browser-dot-min"></span>
+                  <span class="browser-dot browser-dot-max"></span>
+                  <div class="browser-address">localhost:5173/admin/class-schedules</div>
+                </div>
+                <div class="overflow-hidden">
+                  <img src="images/media__1781340880220.png" alt="Student Class Schedule"
+                    class="h-40 w-full object-cover object-top transition duration-200 hover:scale-[1.02]" />
+                </div>
+              </div>
+
+              <h3 class="mt-4 text-sm font-bold text-slate-900 dark:text-white">Student Section Timetables</h3>
+              <p class="mt-1.5 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                Section-level schedule viewer mapping classes for student cohorts, ensuring no overlaps between lecture
+                and laboratory sessions.
+              </p>
+            </div>
+
+            <div class="mt-4 border-t border-slate-200 dark:border-white/10 pt-3">
+              <button
+                class="workflow-toggle flex items-center justify-between w-full text-xs font-bold text-sky-700 dark:text-sky-400 hover:text-sky-900 dark:hover:text-sky-300 transition-colors"
+                data-target="flow-student">
+                <span>VIEW ENGINEERING WORKFLOW</span>
+                <svg class="h-3.5 w-3.5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="flow-student" class="workflow-details">
+                <div
+                  class="mt-2.5 space-y-2 text-xs text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 rounded-lg p-2.5 border border-slate-200 dark:border-white/10">
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">1. Cohort
+                      Query:</strong>
+                    <p class="mt-0.5">Queries active enrolled block sections, course tracks, and curriculum guidelines.
+                    </p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">2.
+                      Verification:</strong>
+                    <p class="mt-0.5">Ensures laboratory and lecture blocks conform to official contact-hour standards.
+                    </p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">3. Print
+                      &amp; Export:</strong>
+                    <p class="mt-0.5">Provides print-ready layout formatting for distribution to students and advisors.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Module 5: Room Utilization Schedule -->
+          <div class="glass-panel card-hover rounded-xl p-4 flex flex-col justify-between reveal reveal-delay-1">
+            <div>
+              <div class="browser-window">
+                <div class="browser-header">
+                  <span class="browser-dot browser-dot-close"></span>
+                  <span class="browser-dot browser-dot-min"></span>
+                  <span class="browser-dot browser-dot-max"></span>
+                  <div class="browser-address">localhost:5173/admin/rooms</div>
+                </div>
+                <div class="overflow-hidden">
+                  <img src="images/media__1781340880285.png" alt="Room Schedule Management"
+                    class="h-40 w-full object-cover object-top transition duration-200 hover:scale-[1.02]" />
+                </div>
+              </div>
+
+              <h3 class="mt-4 text-sm font-bold text-slate-900 dark:text-white">Facility &amp; Room Allocations</h3>
+              <p class="mt-1.5 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                Classroom management console tracking room occupancy, equipment capabilities, and physical campus
+                facility utilization.
+              </p>
+            </div>
+
+            <div class="mt-4 border-t border-slate-200 dark:border-white/10 pt-3">
+              <button
+                class="workflow-toggle flex items-center justify-between w-full text-xs font-bold text-sky-700 dark:text-sky-400 hover:text-sky-900 dark:hover:text-sky-300 transition-colors"
+                data-target="flow-room">
+                <span>VIEW ENGINEERING WORKFLOW</span>
+                <svg class="h-3.5 w-3.5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div id="flow-room" class="workflow-details">
+                <div
+                  class="mt-2.5 space-y-2 text-xs text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 rounded-lg p-2.5 border border-slate-200 dark:border-white/10">
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">1. Asset
+                      Tracking:</strong>
+                    <p class="mt-0.5">Stores room types (Lecture Hall, Computer Lab) and student seat capacity.</p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">2. Conflict
+                      Audit:</strong>
+                    <p class="mt-0.5">Instantly prevents assigning multiple sections to same room during identical hours.
+                    </p>
+                  </div>
+                  <div>
+                    <strong
+                      class="text-slate-900 dark:text-white uppercase tracking-wide text-[10px] font-bold">3.
+                      Optimization:</strong>
+                    <p class="mt-0.5">Reports idle classroom hours to help campus administrators maximize usage.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── 5. SERVICES SECTION ─── -->
+    <section id="services" class="section-divider relative px-5 py-16 lg:px-8">
+      <div class="mx-auto max-w-5xl">
+        <div class="text-center max-w-xl mx-auto reveal">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-400">Services &amp;
+            Capabilities</span>
+          <h2 class="mt-1.5 text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+            What I bring to your team
+          </h2>
+          <p class="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-medium">
+            A focused skillset combining frontend responsiveness, backend business logic, and practical UI/UX execution.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3 reveal reveal-delay-1">
+
+          <!-- Service 1 -->
+          <div class="glass-panel card-hover rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <div
+                class="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-300 dark:border-sky-500/30 text-xl text-sky-800 dark:text-sky-300 mb-4">
+                💻
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Full-Stack Development</h3>
+              <p class="mt-2 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                Building functional web applications from database schemas to interactive frontends using React, PHP, and
+                MySQL.
+              </p>
+            </div>
+            <ul
+              class="mt-5 space-y-1.5 border-t border-slate-200 dark:border-white/10 pt-3 text-xs text-slate-800 dark:text-slate-200 font-medium">
+              <li class="flex items-center gap-1.5">✓ RESTful API Design</li>
+              <li class="flex items-center gap-1.5">✓ Relational Database Modeling</li>
+              <li class="flex items-center gap-1.5">✓ Business Logic &amp; Validations</li>
+            </ul>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="glass-panel card-hover rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <div
+                class="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 dark:bg-teal-950/40 border border-teal-300 dark:border-teal-500/30 text-xl text-teal-800 dark:text-teal-300 mb-4">
+                ⚡
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Frontend Engineering</h3>
+              <p class="mt-2 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                Creating responsive, accessible, and high-performance user interfaces that work seamlessly across
+                mobile, tablet, and desktop viewports.
+              </p>
+            </div>
+            <ul
+              class="mt-5 space-y-1.5 border-t border-slate-200 dark:border-white/10 pt-3 text-xs text-slate-800 dark:text-slate-200 font-medium">
+              <li class="flex items-center gap-1.5">✓ Modern Component Architecture</li>
+              <li class="flex items-center gap-1.5">✓ Tailwind CSS &amp; Clean Styling</li>
+              <li class="flex items-center gap-1.5">✓ Cross-Device Responsiveness</li>
+            </ul>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="glass-panel card-hover rounded-xl p-5 flex flex-col justify-between">
+            <div>
+              <div
+                class="flex h-10 w-10 items-center justify-center rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-500/30 text-xl text-amber-800 dark:text-amber-300 mb-4">
+                🎨
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">UI/UX &amp; Prototyping</h3>
+              <p class="mt-2 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                Translating real-world user workflows into clean, intuitive digital experiences with proper hierarchy,
+                spacing, and micro-interactions.
+              </p>
+            </div>
+            <ul
+              class="mt-5 space-y-1.5 border-t border-slate-200 dark:border-white/10 pt-3 text-xs text-slate-800 dark:text-slate-200 font-medium">
+              <li class="flex items-center gap-1.5">✓ Figma Layouts &amp; Mockups</li>
+              <li class="flex items-center gap-1.5">✓ Intuitive Navigation &amp; Workflows</li>
+              <li class="flex items-center gap-1.5">✓ User-Centered Problem Solving</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 6. CONTACT SECTION ─── -->
+    <section id="contact" class="section-divider relative px-5 py-16 lg:px-8">
+      <div class="mx-auto max-w-5xl">
+        <div class="glass-panel rounded-2xl p-6 lg:p-10 shadow-lg reveal">
+          <div class="grid gap-10 lg:grid-cols-12 lg:gap-14">
+
+            <!-- Left Info Panel (5 cols) -->
+            <div class="lg:col-span-5">
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-700 dark:text-sky-400">Get In Touch</span>
+              <h2
+                class="mt-1.5 text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+                Let's build something great together.
+              </h2>
+              <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                I am actively seeking entry-level software engineering and web development opportunities. Whether you
+                have an open role, a project to collaborate on, or just want to connect, feel free to reach out.
+              </p>
+
+              <!-- Contact Info Items -->
+              <div class="mt-6 space-y-3.5">
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-slate-800 dark:text-slate-200">
+                  <div
+                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-300 dark:border-sky-500/30 text-sky-700 dark:text-sky-400">
+                    📧
+                  </div>
+                  <div>
+                    <div class="text-[11px] text-slate-600 dark:text-slate-400 font-semibold">Email</div>
+                    <a href="mailto:kimarvinchosen@gmail.com"
+                      class="font-bold text-slate-900 dark:text-white hover:text-sky-700 dark:hover:text-sky-400 transition-colors">
+                      kimarvinchosen@gmail.com
+                    </a>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-slate-800 dark:text-slate-200">
+                  <div
+                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-300 dark:border-sky-500/30 text-sky-700 dark:text-sky-400">
+                    📱
+                  </div>
+                  <div>
+                    <div class="text-[11px] text-slate-600 dark:text-slate-400 font-semibold">Phone</div>
+                    <span class="font-bold text-slate-900 dark:text-white">+63 961 423 9893</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3 text-xs sm:text-sm text-slate-800 dark:text-slate-200">
+                  <div
+                    class="flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 dark:bg-sky-950/40 border border-sky-300 dark:border-sky-500/30 text-sky-700 dark:text-sky-400">
+                    📍
+                  </div>
+                  <div>
+                    <div class="text-[11px] text-slate-600 dark:text-slate-400 font-semibold">Location</div>
+                    <span class="font-bold text-slate-900 dark:text-white">Cavite, Philippines</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social Links -->
+              <div class="mt-6 border-t border-slate-200 dark:border-white/10 pt-5">
+                <div
+                  class="text-[11px] uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2.5 font-bold">
+                  Connect on Social</div>
+                <div class="flex flex-wrap gap-2">
+                  <!-- GitHub -->
                   <a href="https://github.com/kimchosen" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-300 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-slate-200/30 hover:bg-white/10 hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 transition-all hover:border-slate-400 dark:hover:border-white/20 hover:bg-slate-50 dark:hover:bg-white/10 shadow-2xs">
+                    <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.579.688.481C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" />
                     </svg>
                     <span>GitHub</span>
                   </a>
 
-                  <!-- Facebook Badge -->
+                  <!-- Facebook -->
                   <a href="https://facebook.com/chosenqt/" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-300 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/30 hover:bg-sky-400/10 hover:text-sky-400 hover:shadow-[0_0_20px_rgba(56,189,248,0.15)]">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 transition-all hover:border-sky-400 hover:bg-sky-50 dark:hover:bg-sky-950/40 hover:text-sky-800 dark:hover:text-sky-300 shadow-2xs">
+                    <svg class="h-3.5 w-3.5 text-sky-700 dark:text-sky-400" fill="currentColor" viewBox="0 0 24 24">
                       <path
                         d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z" />
                     </svg>
                     <span>Facebook</span>
                   </a>
 
-                  <!-- Instagram Badge -->
+                  <!-- Instagram -->
                   <a href="https://www.instagram.com/kmrvnnn/" target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-300 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-fuchsia-400/30 hover:bg-fuchsia-500/10 hover:text-fuchsia-400 hover:shadow-[0_0_20px_rgba(232,121,249,0.15)]">
-                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    class="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 transition-all hover:border-fuchsia-400 hover:bg-fuchsia-50 dark:hover:bg-fuchsia-950/40 hover:text-fuchsia-800 dark:hover:text-fuchsia-300 shadow-2xs">
+                    <svg class="h-3.5 w-3.5 text-fuchsia-700 dark:text-fuchsia-400" fill="currentColor"
+                      viewBox="0 0 24 24">
                       <path
                         d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                     </svg>
@@ -1142,43 +1093,79 @@
               </div>
             </div>
 
-            <form class="contact-form-pod rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-              id="contact-form">
-              <div class="grid gap-4 sm:grid-cols-2">
-                <input
-                  class="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/20"
-                  type="text" name="name" placeholder="Name" required />
-                <input
-                  class="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/20"
-                  type="email" name="email" placeholder="Email" required />
-              </div>
-              <input
-                class="mt-4 w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/20"
-                type="text" name="subject" placeholder="Subject" />
-              <textarea
-                class="mt-4 w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300/50 focus:ring-2 focus:ring-cyan-300/20"
-                name="message" placeholder="Message" rows="5" required></textarea>
-              <button type="submit"
-                class="mt-4 inline-flex items-center justify-center rounded-full bg-cyan-300 px-6 py-3 font-semibold text-slate-950 shadow-glow transition duration-300 hover:-translate-y-1 hover:bg-cyan-200">
-                Send Message
-              </button>
-              <p class="form-status mt-4 text-sm text-slate-400 font-medium" aria-live="polite"></p>
-            </form>
+            <!-- Right Contact Form (7 cols) -->
+            <div class="lg:col-span-7">
+              <form id="contact-form" class="space-y-3.5">
+                <div class="grid gap-3.5 sm:grid-cols-2">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">Your Name *</label>
+                    <input type="text" name="name" class="input-clean" placeholder="e.g. John Doe" required />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">Your Email *</label>
+                    <input type="email" name="email" class="input-clean" placeholder="e.g. john@example.com"
+                      required />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">Subject</label>
+                  <input type="text" name="subject" class="input-clean"
+                    placeholder="e.g. Job Opportunity / Project Inquiry" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">Message *</label>
+                  <textarea name="message" rows="4" class="input-clean" placeholder="Write your message here..."
+                    required></textarea>
+                </div>
+
+                <div>
+                  <button type="submit" class="btn-primary w-full sm:w-auto">
+                    <span>Send Message</span>
+                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="form-status" aria-live="polite"></div>
+              </form>
+            </div>
+
           </div>
         </div>
+      </div>
     </section>
+
   </main>
 
+  <!-- ─── FOOTER ─── -->
   <footer
-    class="section-stage section-footer border-t border-white/10 bg-slate-950/70 px-6 py-8 backdrop-blur-xl lg:px-8">
-    <div
-      class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left reveal">
-      <p class="text-sm text-slate-400">
-        © 2025 Kim Arvin Pinili. All rights reserved.
-      </p>
+    class="border-t border-slate-200 dark:border-white/10 bg-white dark:bg-[#090d16] px-5 py-8 text-xs text-slate-600 dark:text-slate-400 font-medium">
+    <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 sm:flex-row">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-slate-900 dark:text-white">Kim Arvin Pinili</span>
+        <span>&bull;</span>
+        <span class="text-slate-700 dark:text-slate-300 font-semibold">Aspiring Web Developer</span>
+      </div>
+
+      <div class="flex items-center gap-5">
+        <a href="#home" class="hover:text-slate-950 dark:hover:text-white transition-colors font-medium">Home</a>
+        <a href="#about" class="hover:text-slate-950 dark:hover:text-white transition-colors font-medium">About</a>
+        <a href="#skills" class="hover:text-slate-950 dark:hover:text-white transition-colors font-medium">Skills</a>
+        <a href="#projects" class="hover:text-slate-950 dark:hover:text-white transition-colors font-medium">Projects</a>
+        <a href="#services" class="hover:text-slate-950 dark:hover:text-white transition-colors font-medium">Services</a>
+        <a href="#contact" class="hover:text-slate-950 dark:hover:text-white transition-colors font-medium">Contact</a>
+      </div>
+
+      <div class="text-slate-600 dark:text-slate-400">
+        &copy; 2026 Kim Arvin Pinili. All rights reserved.
+      </div>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 
