@@ -49,26 +49,162 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 3. Workflow Collapsible Details in Project Section
-  document.querySelectorAll(".workflow-toggle").forEach((button) => {
-    button.addEventListener("click", () => {
-      const targetId = button.getAttribute("data-target");
-      const details = document.getElementById(targetId);
-      const svg = button.querySelector("svg");
+  // 3. Interactive Project Showcase & Full-Screen Lightbox
+  const schedulerModules = [
+    {
+      badge: "MODULE 01",
+      title: "Chairperson Dashboard",
+      url: "localhost:5173/admin/dashboard",
+      img: "images/media__1781340880330.png",
+      desc: "Central administrative hub displaying real-time timetable health, active faculty counts, and automated conflict alerts.",
+      pills: ["REST API Aggregation", "Real-Time Conflict Scan", "Dynamic Status Counters"],
+      isLogic: false,
+    },
+    {
+      badge: "MODULE 02",
+      title: "Instructor Profile Registry",
+      url: "localhost:5173/admin/instructors",
+      img: "images/media__1781340880185.png",
+      desc: "Faculty workload manager tracking academic credentials, unit limits, and weekly teaching availability constraints.",
+      pills: ["Unit Load Validation", "Transactional MySQL Sync", "Instant Department Filter"],
+      isLogic: false,
+    },
+    {
+      badge: "MODULE 03",
+      title: "Faculty Grid Timetable",
+      url: "localhost:5173/admin/instructor-schedule",
+      img: "images/media__1781340880083.png",
+      desc: "Dynamic 2D scheduling matrix visualizing weekly class allocations per instructor and flagging overlapping slots.",
+      pills: ["Single-Payload Fetch", "Back-to-Back Clash Audit", "Color-Coded Subject Blocks"],
+      isLogic: false,
+    },
+    {
+      badge: "MODULE 04",
+      title: "Student Section Schedules",
+      url: "localhost:5173/admin/class-schedules",
+      img: "images/media__1781340880220.png",
+      desc: "Cohort-level timetable viewer ensuring zero collisions between lecture and laboratory sessions for student blocks.",
+      pills: ["Cohort Track Mapping", "Contact-Hour Verification", "Print-Ready Export"],
+      isLogic: false,
+    },
+    {
+      badge: "MODULE 05",
+      title: "Facility & Room Console",
+      url: "localhost:5173/admin/rooms",
+      img: "images/media__1781340880285.png",
+      desc: "Classroom allocation console monitoring lecture hall and computer lab capacities, occupancy rates, and idle hours.",
+      pills: ["Seat Capacity Tracking", "Room Double-Book Prevention", "Facility Utilization Audit"],
+      isLogic: false,
+    },
+    {
+      badge: "ARCHITECTURE",
+      title: "Conflict Detection Engine",
+      url: "backend/api/validate_schedule.php",
+      img: "",
+      desc: "Server-side validation pipeline that audits room, instructor, and student section intervals before saving to MySQL.",
+      pills: ["PDO Prepared Statements", "Interval Overlap Math", "ACID Transactions"],
+      isLogic: true,
+    },
+  ];
 
-      if (details) {
-        const isOpen = details.classList.contains("open");
-        if (isOpen) {
-          details.classList.remove("open");
-          details.style.maxHeight = null;
-          svg?.classList.remove("rotate-180");
-        } else {
-          details.classList.add("open");
-          details.style.maxHeight = details.scrollHeight + "px";
-          svg?.classList.add("rotate-180");
-        }
-      }
+  let currentModuleIndex = 0;
+  const tabBtns = document.querySelectorAll("#scheduler-tabs .project-tab-btn");
+  const showcaseUrl = document.getElementById("showcase-url");
+  const showcaseImg = document.getElementById("showcase-img");
+  const showcaseImagePanel = document.getElementById("showcase-image-panel");
+  const showcaseLogicPanel = document.getElementById("showcase-logic-panel");
+  const showcaseBadge = document.getElementById("showcase-step-badge");
+  const showcaseTitle = document.getElementById("showcase-title");
+  const showcaseDesc = document.getElementById("showcase-desc");
+  const showcasePills = document.getElementById("showcase-pills");
+  const prevBtn = document.getElementById("showcase-prev");
+  const nextBtn = document.getElementById("showcase-next");
+  const zoomBtn = document.getElementById("showcase-zoom-btn");
+
+  function renderShowcaseModule(index) {
+    if (index < 0) index = schedulerModules.length - 1;
+    if (index >= schedulerModules.length) index = 0;
+    currentModuleIndex = index;
+
+    const mod = schedulerModules[index];
+
+    // Update active state on tab buttons
+    tabBtns.forEach((btn, i) => {
+      btn.classList.toggle("active", i === index);
     });
+
+    if (showcaseUrl) showcaseUrl.textContent = mod.url;
+    if (showcaseBadge) showcaseBadge.textContent = mod.badge;
+    if (showcaseTitle) showcaseTitle.textContent = mod.title;
+    if (showcaseDesc) showcaseDesc.textContent = mod.desc;
+
+    // Toggle between screenshot view and architecture logic view
+    if (mod.isLogic) {
+      showcaseImagePanel?.classList.add("hidden");
+      showcaseLogicPanel?.classList.remove("hidden");
+      zoomBtn?.classList.add("hidden");
+    } else {
+      showcaseLogicPanel?.classList.add("hidden");
+      showcaseImagePanel?.classList.remove("hidden");
+      zoomBtn?.classList.remove("hidden");
+      if (showcaseImg) {
+        showcaseImg.src = mod.img;
+        showcaseImg.alt = mod.title;
+      }
+    }
+
+    // Render engineering highlight pills
+    if (showcasePills) {
+      const pillsHtml = mod.pills
+        .map(
+          (p) =>
+            `<span class="rounded-full bg-white dark:bg-white/5 border border-slate-300 dark:border-white/10 px-2.5 py-0.5 font-semibold text-slate-800 dark:text-slate-200">${p}</span>`
+        )
+        .join("");
+      showcasePills.innerHTML = `<span class="font-bold text-slate-700 dark:text-slate-400 mr-1">Engineering Highlights:</span>${pillsHtml}`;
+    }
+  }
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = parseInt(btn.getAttribute("data-index") || "0", 10);
+      renderShowcaseModule(idx);
+    });
+  });
+
+  prevBtn?.addEventListener("click", () => renderShowcaseModule(currentModuleIndex - 1));
+  nextBtn?.addEventListener("click", () => renderShowcaseModule(currentModuleIndex + 1));
+
+  // Full-Screen Lightbox Modal Logic
+  const lightbox = document.getElementById("image-lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxCaption = document.getElementById("lightbox-caption");
+  const lightboxClose = document.getElementById("lightbox-close");
+
+  function openLightbox() {
+    const mod = schedulerModules[currentModuleIndex];
+    if (!lightbox || !lightboxImg || mod.isLogic) return;
+    lightboxImg.src = mod.img;
+    lightboxImg.alt = mod.title;
+    if (lightboxCaption) lightboxCaption.textContent = `${mod.title} — ${mod.url}`;
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+  }
+
+  showcaseImagePanel?.addEventListener("click", openLightbox);
+  zoomBtn?.addEventListener("click", openLightbox);
+  lightboxClose?.addEventListener("click", closeLightbox);
+  lightbox?.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
   });
 
   // 4. Sliding Pill Indicator & Active Link Highlighting (Desktop)
@@ -245,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
           feedback.classList.add("text-sky-700", "dark:text-sky-400", "font-bold");
 
           setTimeout(() => {
-            feedback.textContent = "Click to copy email";
+            feedback.textContent = "Click to copy";
             feedback.classList.remove("text-sky-700", "dark:text-sky-400", "font-bold");
             feedback.classList.add("text-slate-700", "dark:text-slate-400");
           }, 2500);
